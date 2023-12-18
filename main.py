@@ -59,6 +59,11 @@ async def getUserInfo(userInputData: dict):
     buildingArea = float(userInputData["building_area"])
     return ({'status': 200})
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
+
+
     # # Location configuration using user zipcode
     # if 89999 < int(userInputData["zipcode"]) < 96162:
     #     userState = "CA"
