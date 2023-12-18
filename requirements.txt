@@ -1,0 +1,10 @@
+google-cloud-logging
+numpy
+pandas
+geopandas
+geopy
+shapely
+matplotlib
+fastapi
+uvicorn[standard]
+pymongo
