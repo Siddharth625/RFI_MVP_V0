@@ -6,7 +6,7 @@ class Identification:
     def __init__(self) -> None:
         pass
 
-    def locationConfig(self, userInputState):
+    def locationConfig(self, userState, userCountry):
         """This function configures the loaction
 
         Args:
@@ -20,4 +20,4 @@ class Identification:
             },
 
         }
-        return zipcode_config["USA"][userInputState]
+        return zipcode_config[userCountry][userState]
