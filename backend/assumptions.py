@@ -1,4 +1,5 @@
 import os
+import math
 import pandas as pd
 import numpy as np
 from backend.constants import *
@@ -26,6 +27,9 @@ HVAC_Breakup = {
 
 }
 
+# Insulation Type 1
+THERM_FACTOR = 0.0341296
+
 class Assumptions:
     def __init__(self) -> None:
         pass
@@ -51,4 +55,95 @@ class Assumptions:
         resdf["Amt_Estimation"] = np.where(resdf["Assumption Type"] == "HVAC Type 2", \
                                   (HVAC_Breakup[resdf["Sub-Technology"]] * buildingArea * resdf["Incentive Value"] * KWH_TO_BTU * HVAC_SO_EUI)/1000000, \
                                   resdf["Incentive Value"])
+        return resdf
+
+    def Insulation_Type_1(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Insulation Type 1",
+                    np.where(
+                        resdf["Unit"] == "kWh", 
+                        resdf["Sub-Technology"].map(INSULATION_BREAKUP) * INSULATION_SO_EUI * resdf["Incentive Value"] * buildingArea,
+                        np.where(
+                            resdf["Unit"] == "Therm",
+                            resdf["Sub-Technology"].map(INSULATION_BREAKUP) * INSULATION_SO_EUI * resdf["Incentive Value"] * buildingArea * THERM_FACTOR,
+                            0
+                        )
+                    ),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+        def Insulation_Type_2(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Insulation Type 2",
+                    buildingArea * resdf["Incentive Value"],
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+
+        def Insulation_Type_3(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Insulation Type 3",
+                    resdf["Incentive Value"] * (math.sqrt(buildingArea) + math.sqrt(math.sqrt(buildingArea))),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+
+        def Controls_Type_1(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Controls Type 1",
+                    buildingArea * resdf["Incentive Value"] * CONTROLS_SO_EUI,
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+
+        def Controls_Type_2(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Controls Type 2",
+                    resdf["Incentive Value"],
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+        # Custom Project Type 1 function yet to be standardized
+
+        def Custom_Project_Type_2(self, resdf):
+        """For LED Lighting
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Custom Project Type 2",
+                    resdf["Incentive Value"] * buildingArea * LED_SO_EUI,
+                    resdf["Incentive Value"]
+                )
         return resdf
