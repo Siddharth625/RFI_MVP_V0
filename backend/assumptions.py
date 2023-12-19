@@ -30,6 +30,16 @@ HVAC_Breakup = {
 # Insulation Type 1
 THERM_FACTOR = 0.0341296
 
+# Lighting Type 1
+LED_OPERATIONAL_HRS = 6
+DAYS_IN_YEAR = 365
+
+# Lighting Type 2
+LUMEN_PER_SQFT = 30
+
+# Lighting Type 3
+LUMENS_FLUX = 90
+
 class Assumptions:
     def __init__(self) -> None:
         pass
@@ -144,6 +154,45 @@ class Assumptions:
         resdf["Amt_Estimation"] = np.where(
                     resdf["Assumption Type"] == "Custom Project Type 2",
                     resdf["Incentive Value"] * buildingArea * LED_SO_EUI,
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+        def Lighting_Type_1(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Lighting Type 1",
+                    (buildingArea * resdf["Incentive Value"] * LED_SO_EUI * 1000)/(DAYS_IN_YEAR * LED_OPERATIONAL_HRS),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+        def Lighting_Type_2(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Lighting Type 2",
+                    (buildingArea * resdf["Incentive Value"] * LUMEN_PER_SQFT)/(resdf["Assumed Capacity"]),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+
+        def Lighting_Type_3(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "Lighting Type 3",
+                        (((buildingArea * resdf["Incentive Value"] * LUMEN_PER_SQFT)/(resdf["Assumed Capacity"]))/(resdf["Assumed Capacity"] * LUMENS_FLUX)),
                     resdf["Incentive Value"]
                 )
         return resdf
