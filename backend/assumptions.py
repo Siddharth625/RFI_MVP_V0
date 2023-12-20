@@ -10,7 +10,7 @@ LED_SO_EUI = 1.8
 INSULATION_SO_EUI = 0.9
 CONTROLS_SO_EUI = 1.35
 TOTAL_SO_EUI = 9
-
+buildingArea = 1000
 
 
 # HVAC Type 1
@@ -28,6 +28,10 @@ HVAC_Breakup = {
 }
 
 # Insulation Type 1
+INSULATION_BREAKUP = {
+    "Envelope" : 0.8,
+    "Pipe": 0.2,
+}
 THERM_FACTOR = 0.0341296
 
 # Lighting Type 1
@@ -88,7 +92,7 @@ class Assumptions:
                 )
         return resdf
 
-        def Insulation_Type_2(self, resdf):
+    def Insulation_Type_2(self, resdf):
         """_summary_
 
         Args:
@@ -102,7 +106,7 @@ class Assumptions:
         return resdf
 
 
-        def Insulation_Type_3(self, resdf):
+    def Insulation_Type_3(self, resdf):
         """_summary_
 
         Args:
@@ -116,7 +120,7 @@ class Assumptions:
         return resdf
 
 
-        def Controls_Type_1(self, resdf):
+    def Controls_Type_1(self, resdf):
         """_summary_
 
         Args:
@@ -130,7 +134,7 @@ class Assumptions:
         return resdf
 
 
-        def Controls_Type_2(self, resdf):
+    def Controls_Type_2(self, resdf):
         """_summary_
 
         Args:
@@ -145,7 +149,7 @@ class Assumptions:
 
         # Custom Project Type 1 function yet to be standardized
 
-        def Custom_Project_Type_2(self, resdf):
+    def Custom_Project_Type_2(self, resdf):
         """For LED Lighting
 
         Args:
@@ -158,7 +162,7 @@ class Assumptions:
                 )
         return resdf
 
-        def Lighting_Type_1(self, resdf):
+    def Lighting_Type_1(self, resdf):
         """_summary_
 
         Args:
@@ -171,7 +175,7 @@ class Assumptions:
                 )
         return resdf
 
-        def Lighting_Type_2(self, resdf):
+    def Lighting_Type_2(self, resdf):
         """_summary_
 
         Args:
@@ -184,7 +188,7 @@ class Assumptions:
                 )
         return resdf
 
-        def Lighting_Type_3(self, resdf):
+    def Lighting_Type_3(self, resdf):
         """_summary_
 
         Args:
