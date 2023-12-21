@@ -18,7 +18,7 @@ ASMP_BTUH_SCALING_FACTOR = 5 # Needs Revision
 
 # HVAC Type 2
 KWH_TO_BTU = 3414
-HVAC_Breakup = {
+HVAC_BREAKUP = {
     "Air Conditioners" : 0.6,
     "Air Compressors" : 0.6,
     "Heat Pumps" : 0.6,
@@ -26,6 +26,13 @@ HVAC_Breakup = {
     "Pumps and Motors" : 0.3,
 
 }
+
+# HVAC Type 3
+HVAC_SCALING_FACTOR_TON_SO = 0.002254
+
+# HVAC Type 4
+CFM_PER_100_SQFT = 0.05
+CFM_HP_RATIO = 4
 
 # Insulation Type 1
 INSULATION_BREAKUP = {
@@ -47,6 +54,17 @@ LUMENS_FLUX = 90
 class Assumptions:
     def __init__(self) -> None:
         pass
+    
+    def Standard_Type(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(resdf["Assumption Type"] == "Standard", \
+                                  resdf["Incentive Value"], \
+                                  resdf["Incentive Value"])
+        return resdf
 
     def HVAC_TYPE_1(self, resdf):
         """_summary_
@@ -66,9 +84,74 @@ class Assumptions:
         Args:
             resdf (_type_): _description_
         """
-        resdf["Amt_Estimation"] = np.where(resdf["Assumption Type"] == "HVAC Type 2", \
-                                  (HVAC_Breakup[resdf["Sub-Technology"]] * buildingArea * resdf["Incentive Value"] * KWH_TO_BTU * HVAC_SO_EUI)/1000000, \
-                                  resdf["Incentive Value"])
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "HVAC Type 2",
+                    np.where(
+                        resdf["Unit"] == "kWh", 
+                        resdf["Sub-Technology"].map(HVAC_BREAKUP) * HVAC_SO_EUI * resdf["Incentive Value"] * buildingArea,
+                        np.where(
+                            resdf["Unit"] == "MBTU",
+                            (resdf["Sub-Technology"].map(HVAC_BREAKUP) * HVAC_SO_EUI * resdf["Incentive Value"] * buildingArea * KWH_TO_BTU)/1000000,
+                            0
+                        )
+                    ),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+    
+    def HVAC_TYPE_3(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "HVAC Type 3",
+                    np.where(
+                        resdf["Unit"] == "ton", 
+                        resdf["Incentive Value"] * buildingArea * HVAC_SCALING_FACTOR_TON_SO,
+                        np.where(
+                            resdf["Unit"] == "unit",
+                            (resdf["Incentive Value"] * buildingArea * HVAC_SCALING_FACTOR_TON_SO)/resdf["Assumed Capacity"],
+                            0
+                        )
+                    ),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+    
+    def HVAC_TYPE_4(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "HVAC Type 4",
+                    np.where(
+                        resdf["Unit"] == "unit", 
+                        resdf["Incentive Value"],
+                        np.where(
+                            resdf["Unit"] == "HP",
+                            (resdf["Incentive Value"] * buildingArea * CFM_PER_100_SQFT)/(CFM_HP_RATIO),
+                            0
+                        )
+                    ),
+                    resdf["Incentive Value"]
+                )
+        return resdf
+    
+    def HVAC_TYPE_5(self, resdf):
+        """_summary_
+
+        Args:
+            resdf (_type_): _description_
+        """
+        resdf["Amt_Estimation"] = np.where(
+                    resdf["Assumption Type"] == "HVAC Type 5",
+                    buildingArea * resdf["Incentive Value"],
+                    resdf["Incentive Value"]
+                )
         return resdf
 
     def Insulation_Type_1(self, resdf):
@@ -133,20 +216,6 @@ class Assumptions:
                 )
         return resdf
 
-
-    def Controls_Type_2(self, resdf):
-        """_summary_
-
-        Args:
-            resdf (_type_): _description_
-        """
-        resdf["Amt_Estimation"] = np.where(
-                    resdf["Assumption Type"] == "Controls Type 2",
-                    resdf["Incentive Value"],
-                    resdf["Incentive Value"]
-                )
-        return resdf
-
         # Custom Project Type 1 function yet to be standardized
 
     def Custom_Project_Type_2(self, resdf):
@@ -199,4 +268,23 @@ class Assumptions:
                         (((buildingArea * resdf["Incentive Value"] * LUMEN_PER_SQFT)/(resdf["Assumed Capacity"]))/(resdf["Assumed Capacity"] * LUMENS_FLUX)),
                     resdf["Incentive Value"]
                 )
+        return resdf
+    
+    def Caliberate_Assumptions(self, resdf):
+        resdf["Amt_Estimation"] = np.nan
+
+        resdf = self.Standard_Type(resdf)
+        resdf = self.HVAC_TYPE_1(resdf)
+        resdf = self.HVAC_TYPE_2(resdf)
+        resdf = self.HVAC_TYPE_3(resdf)
+        resdf = self.HVAC_TYPE_4(resdf)
+        resdf = self.HVAC_TYPE_5(resdf)
+        resdf = self.Lighting_Type_1(resdf)
+        resdf = self.Lighting_Type_2(resdf)
+        resdf = self.Lighting_Type_3(resdf)
+        resdf = self.Insulation_Type_1(resdf)
+        resdf = self.Insulation_Type_2(resdf)
+        resdf = self.Insulation_Type_3(resdf)
+        resdf = self.Controls_Type_1(resdf)
+        resdf = self.Controls_Type_1(resdf)
         return resdf

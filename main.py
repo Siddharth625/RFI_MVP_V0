@@ -5,11 +5,12 @@ import pandas as pd
 import json
 from backend.identification import Identification
 from backend.constants import databaseV2
+from backend.assumptions import Assumptions
 # import google.cloud.logging
-
 # client = google.cloud.logging.Client()
 
 identification_class = Identification()
+assumptions = Assumptions()
 
 app = FastAPI()
 
@@ -82,17 +83,19 @@ async def getUserInfo(userInputData: dict):
     fiteredRebateData = rebateData[ (rebateData["State"] == userCountry) | \
                                 ((rebateData["State"] == userState) & (rebateData["County"] == userState)) | \
                                 (rebateData["County"] == userCounty)]
-    fiteredRebateData['Estimated Incentive Value'] = fiteredRebateData['Estimated Incentive Value'].astype(float)
+    # fiteredRebateData['Estimated Incentive Value'] = fiteredRebateData['Estimated Incentive Value'].astype(float)
     # rebates_data = fiteredRebateData[fiteredRebateData['Incentive Type'] == 'Discount']
     # tax_amount_data = fiteredRebateData[fiteredRebateData['Incentive Value'] != 'Discount']
+    fiteredRebateData = assumptions.Caliberate_Assumptions(fiteredRebateData)
     resultDF = fiteredRebateData.copy()
+    print(resultDF)
     return json.loads(resultDF.to_json(orient="records"))
 
 @app.get('/high_level_view')
 async def highLevelView():
     global resultDF
     dfHighLevel = resultDF.copy()
-    dfHighLevel = dfHighLevel.groupby(['Technology' , 'Sub-Technology'])['Estimated Incentive Value'].agg(['median']).reset_index()
+    dfHighLevel = dfHighLevel.groupby(['Technology' , 'Sub-Technology'])['Amt_Estimation'].agg(['median']).reset_index()
     result_dict = {}
     for (category, group_type), group in dfHighLevel.groupby(['Technology' , 'Sub-Technology']):
         group_json = group.to_json(orient='records')
@@ -105,7 +108,7 @@ async def highLevelView():
 async def lowLevelView():
     global resultDF
     dfLowLevel = resultDF.copy()
-    dfLowLevel = dfLowLevel.groupby(['Technology' ,'Incentive Name','Provider','Website Link'])[['Estimated Incentive Value']].agg(['median']).reset_index()
+    dfLowLevel = dfLowLevel.groupby(['Technology' ,'Incentive Name','Provider','Website Link'])[['Amt_Estimation']].agg(['median']).reset_index()
     result_dict = {}
     for (category, group_type, size, location), group in dfLowLevel.groupby(['Technology' ,'Incentive Name','Provider','Website Link']):
         group_json = group.to_json(orient='records')
