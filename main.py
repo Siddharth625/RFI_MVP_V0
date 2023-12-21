@@ -17,7 +17,7 @@ app = FastAPI()
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
-    "http://localhost",
+    "http://localhost:8000",
     "http://localhost:8080",
 ]
 
@@ -89,6 +89,7 @@ async def getUserInfo(userInputData: dict):
     fiteredRebateData = assumptions.Caliberate_Assumptions(fiteredRebateData)
     resultDF = fiteredRebateData.copy()
     print(resultDF)
+    resultDF.to_csv("RESDF.csv", index = False)
     return json.loads(resultDF.to_json(orient="records"))
 
 @app.get('/high_level_view')
