@@ -7,12 +7,9 @@ import axios from "axios";
 
 function App() {
   const [inputValue, setInputValue] = useState({
-    ownership: "",
-    taxFiling: "",
-    householdSize: "",
-    householdIncome: "",
-    zipCode: "",
-    emailAddress: "",
+    zipcode: "",
+    utility: "",
+    building_area: "",
   });
 
   const handleInputChange = (value, name) => {
@@ -26,7 +23,8 @@ function App() {
   const postUtilityData = async () => {
     const response = await axios.post("/get_user_info", {
       utility: inputValue?.utility,
-      zipcode: inputValue?.zipCode,
+      zipcode: inputValue?.zipcode,
+      building_area: inputValue?.building_area,
     });
     console.log("data", response);
   };
@@ -109,10 +107,10 @@ function App() {
           <Alignment padding="0px 0px 24px">
             <InputComponent
               handleInputChange={handleInputChange}
-              name="buildingArea"
+              name="building_area"
               label="Building Area"
               // icon={<FiLayers />}
-              unit="sq.ft."
+              // unit="sq.ft."
               value={inputValue?.building_area}
               type="number"
             />
