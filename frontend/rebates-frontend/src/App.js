@@ -24,18 +24,10 @@ function App() {
   };
 
   const postUtilityData = async () => {
-    const response = await axios(
-      "https://rfi-image-66y4zoih6a-uc.a.run.app/get_user_info",
-      {
-        utility: "NYSERDA",
-        city: "NY",
-        state: "NY",
-        county: "NY",
-        country: "USA",
-        zipcode: "10001",
-        building_area: 1000.5,
-      }
-    );
+    const response = await axios.post("/get_user_info", {
+      utility: inputValue?.utility,
+      zipcode: inputValue?.zipCode,
+    });
     console.log("data", response);
   };
 
@@ -50,10 +42,18 @@ function App() {
           Rebates and Incentives
         </LayoutBox>
       </Header>
-      <Alignment style={{ border: "1px solid black" }}>
+      <Alignment style={{ border: "1px solid black", padding: "32px" }}>
         <LayoutBox justifyContent="space-evenly" style={{ gap: "24px" }}>
           <Alignment margin="16px 0px">
-            <SelectComponent
+            {/* <InputComponent
+              handleInputChange={handleInputChange}
+              name="householdIncome"
+              label="Household Income"
+              // icon={<FiLayers />}
+              value={inputValue?.householdIncome}
+              type="number"
+            /> */}
+            {/* <SelectComponent
               Options={[
                 { name: "City", value: "City" },
                 { name: "Area", value: "Area" },
@@ -64,10 +64,10 @@ function App() {
               name="ownership"
               handleInputChange={handleInputChange}
               value={inputValue?.ownership}
-            />
+            /> */}
           </Alignment>
           <Alignment margin="16px 0px">
-            <SelectComponent
+            {/* <SelectComponent
               Options={[
                 { name: "City", value: "City" },
                 { name: "Area", value: "Area" },
@@ -78,12 +78,12 @@ function App() {
               name="taxFiling"
               handleInputChange={handleInputChange}
               value={inputValue?.taxFiling}
-            />
+            /> */}
           </Alignment>
         </LayoutBox>
         <LayoutBox justifyContent="space-evenly" style={{ gap: "24px" }}>
           <Alignment margin="16px 0px">
-            <SelectComponent
+            {/* <SelectComponent
               Options={[
                 { name: "City", value: "City" },
                 { name: "Area", value: "Area" },
@@ -94,26 +94,26 @@ function App() {
               name="householdSize"
               handleInputChange={handleInputChange}
               value={inputValue?.householdSize}
-            />
+            /> */}
           </Alignment>
           <Alignment margin="16px 0px">
             <InputComponent
               handleInputChange={handleInputChange}
-              name="householdIncome"
-              label="Household Income"
+              name="zipcode"
+              label="Zipcode"
               // icon={<FiLayers />}
-              value={inputValue?.householdIncome}
+              value={inputValue?.zipcode}
               type="number"
             />
           </Alignment>
           <Alignment padding="0px 0px 24px">
             <InputComponent
               handleInputChange={handleInputChange}
-              name="zipcode"
-              label="Zip Code"
+              name="buildingArea"
+              label="Building Area"
               // icon={<FiLayers />}
               unit="sq.ft."
-              value={inputValue?.zipcode}
+              value={inputValue?.building_area}
               type="number"
             />
           </Alignment>
@@ -126,12 +126,12 @@ function App() {
           <Alignment padding="0px 0px 24px">
             <InputComponent
               handleInputChange={handleInputChange}
-              name="emailAddress"
-              label="Email address"
+              name="utility"
+              label="Utility"
               // icon={<FiLayers />}
-              unit="sq.ft."
-              value={inputValue?.emailAddress}
-              type="email"
+              // unit="sq.ft."
+              value={inputValue?.utility}
+              type="text"
             />
           </Alignment>
           <Button
