@@ -86,11 +86,11 @@ async def getUserInfo(userInputData: dict):
     # fiteredRebateData['Estimated Incentive Value'] = fiteredRebateData['Estimated Incentive Value'].astype(float)
     # rebates_data = fiteredRebateData[fiteredRebateData['Incentive Type'] == 'Discount']
     # tax_amount_data = fiteredRebateData[fiteredRebateData['Incentive Value'] != 'Discount']
-    fiteredRebateData = assumptions.Caliberate_Assumptions(fiteredRebateData)
     resultDF = fiteredRebateData.copy()
     print(resultDF)
-    resultDF.to_csv("RESDF.csv", index = False)
-    return json.loads(resultDF.to_json(orient="records"))
+    resdf = assumptions.Caliberate_Assumptions(resultDF)
+    resdf.to_csv("RESDF.csv", index = False)
+    return json.loads(resdf.to_json(orient="records"))
 
 @app.get('/high_level_view')
 async def highLevelView():
