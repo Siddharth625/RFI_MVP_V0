@@ -17,7 +17,7 @@ app = FastAPI()
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
-    "http://localhost",
+    "http://localhost:8000",
     "http://localhost:8080",
 ]
 
@@ -64,7 +64,6 @@ async def getUserInfo(userInputData: dict):
     userCountry = userInputData['country']
     userZipcode = int(userInputData['zipcode'])
     buildingArea = float(userInputData["building_area"])
-
     # # Checking for which State does the user belong to and then initializing that state's zipcode csv
     # # Need to know if I can get the state from only the zipcode from the frontend - Rishabh
     # if 89999 < userZipcode < 96162:
@@ -86,10 +85,11 @@ async def getUserInfo(userInputData: dict):
     # fiteredRebateData['Estimated Incentive Value'] = fiteredRebateData['Estimated Incentive Value'].astype(float)
     # rebates_data = fiteredRebateData[fiteredRebateData['Incentive Type'] == 'Discount']
     # tax_amount_data = fiteredRebateData[fiteredRebateData['Incentive Value'] != 'Discount']
-    fiteredRebateData = assumptions.Caliberate_Assumptions(fiteredRebateData)
     resultDF = fiteredRebateData.copy()
     print(resultDF)
-    return json.loads(resultDF.to_json(orient="records"))
+    resdf = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
+    resdf.to_csv("RESDF.csv", index = False)
+    return json.loads(resdf.to_json(orient="records"))
 
 @app.get('/high_level_view')
 async def highLevelView():

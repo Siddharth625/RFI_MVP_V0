@@ -25,10 +25,14 @@ function App() {
   const [viewData, setViewData] = useState();
 
   const postUtilityData = async () => {
-    const response = await axios.post("/get_user_info", {
-      utility: parseInt(inputValue?.utility),
-      zipcode: parseInt(inputValue?.zipcode),
-      building_area: parseInt(inputValue?.building_area),
+    const response = await axios.post("http://localhost:8000/get_user_info", {
+      utility: inputValue?.utility,
+      city: "NY",
+      state: "NY",
+      county: "NY",
+      country: "USA",
+      zipcode: inputValue?.zipcode,
+      building_area: parseFloat(inputValue?.building_area),
     });
     console.log("data", response);
   };
