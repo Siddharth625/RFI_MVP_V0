@@ -12,7 +12,7 @@ LED_SO_EUI = 1.8
 INSULATION_SO_EUI = 0.9
 CONTROLS_SO_EUI = 1.35
 TOTAL_SO_EUI = 9
-buildingArea = 1000
+# buildingArea = 1500
 
 
 # HVAC Type 1
@@ -60,7 +60,7 @@ class Assumptions:
     def __init__(self) -> None:
         pass
     
-    def Standard_Type(self, resultDF):
+    def Standard_Type(self, resultDF, buildingArea):
         """_summary_
 
         Args:
@@ -73,7 +73,7 @@ class Assumptions:
         assumption_transformation_df = resdf[resdf["Assumption Type"] == "Standard"]
         return assumption_transformation_df
 
-    def HVAC_TYPE_1(self, resultDF, assumption_transformation_df):
+    def HVAC_TYPE_1(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -88,7 +88,7 @@ class Assumptions:
         return assumption_transformation_df
         
     
-    def HVAC_TYPE_2(self, resultDF, assumption_transformation_df):
+    def HVAC_TYPE_2(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -111,7 +111,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
     
-    def HVAC_TYPE_3(self, resultDF, assumption_transformation_df):
+    def HVAC_TYPE_3(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -134,7 +134,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
     
-    def HVAC_TYPE_4(self, resultDF, assumption_transformation_df):
+    def HVAC_TYPE_4(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -157,7 +157,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
     
-    def HVAC_TYPE_5(self, resultDF, assumption_transformation_df):
+    def HVAC_TYPE_5(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -172,7 +172,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
 
-    def Insulation_Type_1(self, resultDF, assumption_transformation_df):
+    def Insulation_Type_1(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -195,7 +195,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
 
-    def Insulation_Type_2(self, resultDF, assumption_transformation_df):
+    def Insulation_Type_2(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -211,7 +211,7 @@ class Assumptions:
         return assumption_transformation_df
 
 
-    def Insulation_Type_3(self, resultDF, assumption_transformation_df):
+    def Insulation_Type_3(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -227,7 +227,7 @@ class Assumptions:
         return assumption_transformation_df
 
 
-    def Controls_Type_1(self, resultDF, assumption_transformation_df):
+    def Controls_Type_1(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -244,7 +244,7 @@ class Assumptions:
 
         # Custom Project Type 1 function yet to be standardized
 
-    def Custom_Project_Type_2(self, resultDF,assumption_transformation_df):
+    def Custom_Project_Type_2(self, resultDF,assumption_transformation_df, buildingArea):
         """For LED Lighting
 
         Args:
@@ -259,7 +259,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
 
-    def Lighting_Type_1(self, resultDF,assumption_transformation_df):
+    def Lighting_Type_1(self, resultDF,assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -274,7 +274,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
 
-    def Lighting_Type_2(self, resultDF, assumption_transformation_df):
+    def Lighting_Type_2(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -289,7 +289,7 @@ class Assumptions:
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
 
-    def Lighting_Type_3(self, resultDF, assumption_transformation_df):
+    def Lighting_Type_3(self, resultDF, assumption_transformation_df, buildingArea):
         """_summary_
 
         Args:
@@ -298,26 +298,26 @@ class Assumptions:
         resdf = resultDF.copy()
         resdf["Amt_Estimation"] = np.where(
                     resdf["Assumption Type"] == "Lighting Type 3",
-                        (((buildingArea * resdf["Incentive Value"] * LUMEN_PER_SQFT)/(resdf["Assumed Capacity"]))/(resdf["Assumed Capacity"] * LUMENS_FLUX)),
+                        ((buildingArea * resdf["Incentive Value"] * LUMEN_PER_SQFT * LUMENS_FLUX)/(resdf["Assumed Capacity"] * resdf["Assumed Capacity"])),
                   0)
         df_add = resdf[resdf["Assumption Type"] == "Lighting Type 3"]
         assumption_transformation_df = pd.concat([assumption_transformation_df, df_add])
         return assumption_transformation_df
     
-    def Caliberate_Assumptions(self, resultDF):
+    def Caliberate_Assumptions(self, resultDF, buildingArea):
         df_master = pd.DataFrame()
-        df_master = self.Standard_Type(resultDF)
-        df_master = self.HVAC_TYPE_1(resultDF, df_master)
-        df_master = self.HVAC_TYPE_3(resultDF, df_master)
-        df_master = self.HVAC_TYPE_4(resultDF, df_master)
-        df_master = self.HVAC_TYPE_5(resultDF, df_master)
-        df_master = self.Lighting_Type_1(resultDF, df_master)
-        df_master = self.Lighting_Type_2(resultDF, df_master)
-        df_master = self.Lighting_Type_3(resultDF, df_master)
-        df_master = self.Insulation_Type_1(resultDF, df_master)
-        df_master = self.Insulation_Type_2(resultDF, df_master)
-        df_master = self.Insulation_Type_3(resultDF, df_master)
-        df_master = self.Controls_Type_1(resultDF, df_master)
-        df_master = self.Custom_Project_Type_2(resultDF, df_master)
-        df_master = self.HVAC_TYPE_2(resultDF, df_master)
+        df_master = self.Standard_Type(resultDF, buildingArea)
+        df_master = self.HVAC_TYPE_1(resultDF, df_master, buildingArea)
+        df_master = self.HVAC_TYPE_3(resultDF, df_master, buildingArea)
+        df_master = self.HVAC_TYPE_4(resultDF, df_master, buildingArea)
+        df_master = self.HVAC_TYPE_5(resultDF, df_master, buildingArea)
+        df_master = self.Lighting_Type_1(resultDF, df_master, buildingArea)
+        df_master = self.Lighting_Type_2(resultDF, df_master, buildingArea)
+        df_master = self.Lighting_Type_3(resultDF, df_master, buildingArea)
+        df_master = self.Insulation_Type_1(resultDF, df_master, buildingArea)
+        df_master = self.Insulation_Type_2(resultDF, df_master, buildingArea)
+        df_master = self.Insulation_Type_3(resultDF, df_master,buildingArea)
+        df_master = self.Controls_Type_1(resultDF, df_master, buildingArea)
+        df_master = self.Custom_Project_Type_2(resultDF, df_master, buildingArea)
+        df_master = self.HVAC_TYPE_2(resultDF, df_master, buildingArea)
         return df_master

@@ -64,7 +64,6 @@ async def getUserInfo(userInputData: dict):
     userCountry = userInputData['country']
     userZipcode = int(userInputData['zipcode'])
     buildingArea = float(userInputData["building_area"])
-
     # # Checking for which State does the user belong to and then initializing that state's zipcode csv
     # # Need to know if I can get the state from only the zipcode from the frontend - Rishabh
     # if 89999 < userZipcode < 96162:
@@ -88,7 +87,7 @@ async def getUserInfo(userInputData: dict):
     # tax_amount_data = fiteredRebateData[fiteredRebateData['Incentive Value'] != 'Discount']
     resultDF = fiteredRebateData.copy()
     print(resultDF)
-    resdf = assumptions.Caliberate_Assumptions(resultDF)
+    resdf = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
     resdf.to_csv("RESDF.csv", index = False)
     return json.loads(resdf.to_json(orient="records"))
 
