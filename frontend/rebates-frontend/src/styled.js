@@ -50,7 +50,7 @@ export const IconLabel = styled.div`
 `;
 
 export const LayoutBox = styled.div(({ justifyContent, alignItems }) => ({
-  //   display: "flex",
+  display: "flex",
   justifyContent,
   alignItems,
 }));
