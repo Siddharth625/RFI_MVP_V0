@@ -13,11 +13,9 @@ function App() {
   });
 
   let rowData = [];
-
+  const [highLevelView, setHighLevelView] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
-  const [highLevelView, setHighLevelView] = useState([]);
-
   const handleInputChange = (value, name) => {
     console.log("nane", name, value);
     setInputValue((prev) => ({
@@ -39,12 +37,39 @@ function App() {
       building_area: parseFloat(inputValue?.building_area),
     });
 
-    if (response?.data.length > 0) {
+    if (response?.data) {
       const highLevelView = await axios.get(
         "http://localhost:8000/high_level_view"
       );
-      setHighLevelView(highLevelView);
       console.log("highLevelView", highLevelView);
+
+      Object.entries(highLevelView?.data?.data).map(([key, value], index) => {
+        let subtechnologyArray = [];
+        Object.keys(value)?.map((data, index) => {
+          subtechnologyArray?.push(data);
+        });
+        console.log("keyss", key, value);
+        console.log("subtech", subtechnologyArray);
+
+        rowData?.push({
+          technology: key,
+          subtechnology: subtechnologyArray,
+          amount: 0,
+        });
+        console.log("rowData", rowData);
+      });
+
+      setHighLevelView({
+        headers: [
+          "Technology",
+          "Subtechnology",
+          "Maximum Amount",
+          "Upfront Cost",
+          "Details",
+          "Payback Period",
+        ],
+        rowData,
+      });
     }
 
     console.log("data", response);
@@ -76,43 +101,167 @@ function App() {
     },
   ];
 
-  useEffect(() => {
-    if (highLevelView?.length > 0) {
-      Object.entries(highLevelView).map(([key, value], index) => {
-        let subtechnologyArray = [];
-        Object.keys(value)?.map((data, index) => {
-          subtechnologyArray?.push(data);
-        });
-        rowData?.push({
-          technology: key,
-          subtechnology: subtechnologyArray,
-          amount: 0,
-        });
-        console.log("rowData", rowData);
-      });
-    }
-  }, [highLevelView]);
-
-  const HIGH_LEVEL_VIEW = {
-    headers: [
-      "Technology",
-      "Subtechnology",
-      "Maximum Amount",
-      "Upfront Cost",
-      "Details",
-      "Payback Period",
-    ],
-    rowData,
+  const updatedTechnology = {
+    Controls: {
+      "Building Controls": [
+        {
+          Technology: "Controls",
+          "Sub-Technology": "Building Controls",
+          median: 405,
+        },
+      ],
+      Controls: [
+        {
+          Technology: "Controls",
+          "Sub-Technology": "Controls",
+          median: 10000,
+        },
+      ],
+    },
+    "Custom Program": {
+      Lighting: [
+        {
+          Technology: "Custom Program",
+          "Sub-Technology": "Lighting",
+          median: 189,
+        },
+      ],
+    },
+    HVAC: {
+      "Air Compressor": [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "Air Compressor",
+          median: 225,
+        },
+      ],
+      "Air Conditioners": [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "Air Conditioners",
+          median: 211.3125,
+        },
+      ],
+      HVAC: [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "HVAC",
+          median: 6410,
+        },
+      ],
+      "HVAC Controls": [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "HVAC Controls",
+          median: 150,
+        },
+      ],
+      "Heat Pump": [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "Heat Pump",
+          median: 1102.679325,
+        },
+      ],
+      Heaters: [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "Heaters",
+          median: 57.0351375,
+        },
+      ],
+      "Pumps & Motors": [
+        {
+          Technology: "HVAC",
+          "Sub-Technology": "Pumps & Motors",
+          median: 180,
+        },
+      ],
+    },
+    Insulation: {
+      Envelope: [
+        {
+          Technology: "Insulation",
+          "Sub-Technology": "Envelope",
+          median: 734.4,
+        },
+      ],
+      Insulation: [
+        {
+          Technology: "Insulation",
+          "Sub-Technology": "Insulation",
+          median: 6410,
+        },
+      ],
+      Pipe: [
+        {
+          Technology: "Insulation",
+          "Sub-Technology": "Pipe",
+          median: 314.6721426447,
+        },
+      ],
+    },
+    "LED Lighting": {
+      Downlights: [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "Downlights",
+          median: 500,
+        },
+      ],
+      Exterior: [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "Exterior",
+          median: 306,
+        },
+      ],
+      Interior: [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "Interior",
+          median: 400,
+        },
+      ],
+      "LED Controls": [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "LED Controls",
+          median: 3.41796875,
+        },
+      ],
+      "LED Lighting": [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "LED Lighting",
+          median: 6410,
+        },
+      ],
+      Lamps: [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "Lamps",
+          median: 344.25,
+        },
+      ],
+      Troffers: [
+        {
+          Technology: "LED Lighting",
+          "Sub-Technology": "Troffers",
+          median: 286.875,
+        },
+      ],
+    },
+    Solar: {
+      Solar: [
+        {
+          Technology: "Solar",
+          "Sub-Technology": "Solar",
+          median: 10000,
+        },
+      ],
+    },
   };
-
-  const fetchHighLevelView = async () => {
-    // const response = await axios?.get("/highlevelview");
-    // setViewData(response?.data);
-  };
-
-  useEffect(() => {
-    fetchHighLevelView();
-  }, []);
 
   return (
     <Alignment style={{ padding: "32px" }}>
@@ -235,7 +384,7 @@ function App() {
           <Alignment padding="0px 32px">
             <table>
               <tr>
-                {HIGH_LEVEL_VIEW?.headers?.map((headerData) => {
+                {highLevelView?.headers?.map((headerData) => {
                   return (
                     <th style={{ width: "300px" }}>
                       <Alignment>{headerData}</Alignment>
@@ -244,7 +393,7 @@ function App() {
                 })}
               </tr>
 
-              {HIGH_LEVEL_VIEW?.rowData?.map((data, index) => {
+              {highLevelView?.rowData?.map((data, index) => {
                 return (
                   <tr style={{ position: "relative", left: "70px" }}>
                     <td style={{ padding: "19px 0px" }}>
