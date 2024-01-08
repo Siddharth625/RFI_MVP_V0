@@ -52,7 +52,8 @@ function App() {
           stateSum = stateSum + data?.Amt_Estimation;
         } else if (data?.Jurisdiction.toLowerCase() === "utility") {
           localSum = localSum + data?.Amt_Estimation;
-        } else if (data?.["Incentive Type"].toLowerCase() === "discount") {
+        } 
+        if (data?.["Incentive Type"].toLowerCase() === "discount") {
           discount = discount + data?.Amt_Estimation;
         } else {
           nonDiscount = nonDiscount + data?.Amt_Estimation;
