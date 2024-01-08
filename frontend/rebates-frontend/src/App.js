@@ -58,7 +58,6 @@ function App() {
         });
         console.log("rowData", rowData);
       });
-
       setHighLevelView({
         headers: [
           "Technology",
