@@ -53,7 +53,7 @@ function App() {
           console.log("subet", data);
           subtechnologyArray?.push({
             technology: data?.[0]?.["Sub-Technology"],
-            amount: data?.[0]?.median,
+            amount: Math.round(data?.[0]?.median + Number.EPSILON * 100) / 100,
           });
         });
         console.log("keyss", key, value);
@@ -62,16 +62,12 @@ function App() {
         rowData?.push({
           technology: key,
           subtechnology: subtechnologyArray,
-          amount: sum,
+          amount: Math.round(sum + Number.EPSILON * 100) / 100,
         });
         console.log("rowData", rowData);
       });
       setHighLevelView({
-        headers: [
-          "Technology",
-          "Subtechnology",
-          "Maximum Amount"
-        ],
+        headers: ["Technology", "Subtechnology", "Maximum Amount"],
         rowData,
       });
     }
@@ -463,7 +459,7 @@ function App() {
                                     right: "14px",
                                   }}
                                 >
-                                  {data?.technology + ": " + data?.amount}
+                                  {data?.technology + ": " + "$" + data?.amount}
                                 </Alignment>
                               );
                             })
@@ -488,7 +484,7 @@ function App() {
                               alignItems: "center",
                             }}
                           >
-                            {data?.amount}
+                            {"$" + data?.amount}
                           </div>
                           <br />
                         </Alignment>
