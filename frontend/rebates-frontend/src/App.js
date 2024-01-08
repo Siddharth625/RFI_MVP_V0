@@ -54,8 +54,6 @@ function App() {
           localSum = localSum + data?.Amt_Estimation;
         } else if (data?.["Incentive Type"].toLowerCase() === "discount") {
           discount = discount + data?.Amt_Estimation;
-        } else if (data?.["Incentive Type"].toLowerCase() === "discount") {
-          discount = discount + data?.Amt_Estimation;
         } else {
           nonDiscount = nonDiscount + data?.Amt_Estimation;
         }
