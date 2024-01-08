@@ -45,8 +45,16 @@ function App() {
 
       Object.entries(highLevelView?.data?.data).map(([key, value], index) => {
         let subtechnologyArray = [];
-        Object.keys(value)?.map((data, index) => {
-          subtechnologyArray?.push(data);
+        let sum = 0;
+        Object.values(value)?.map((data) => {
+          sum = sum + data?.[0]?.median;
+        });
+        Object.values(value)?.map((data, index) => {
+          console.log("subet", data);
+          subtechnologyArray?.push({
+            technology: data?.[0]?.["Sub-Technology"],
+            amount: data?.[0]?.median,
+          });
         });
         console.log("keyss", key, value);
         console.log("subtech", subtechnologyArray);
@@ -54,7 +62,7 @@ function App() {
         rowData?.push({
           technology: key,
           subtechnology: subtechnologyArray,
-          amount: 0,
+          amount: sum,
         });
         console.log("rowData", rowData);
       });
@@ -62,10 +70,7 @@ function App() {
         headers: [
           "Technology",
           "Subtechnology",
-          "Maximum Amount",
-          "Upfront Cost",
-          "Details",
-          "Payback Period",
+          "Maximum Amount"
         ],
         rowData,
       });
@@ -385,8 +390,14 @@ function App() {
               <tr>
                 {highLevelView?.headers?.map((headerData) => {
                   return (
-                    <th style={{ width: "300px" }}>
-                      <Alignment>{headerData}</Alignment>
+                    <th style={{ width: "400px" }}>
+                      <Alignment>
+                        {!toggle && headerData !== "Subtechnology"
+                          ? headerData
+                          : toggle
+                          ? headerData
+                          : null}
+                      </Alignment>
                     </th>
                   );
                 })}
@@ -394,7 +405,7 @@ function App() {
 
               {highLevelView?.rowData?.map((data, index) => {
                 return (
-                  <tr style={{ position: "relative", left: "70px" }}>
+                  <tr style={{ position: "relative", left: "155px" }}>
                     <td style={{ padding: "19px 0px" }}>
                       <LayoutBox style={{ gap: "24px" }}>
                         <Alignment style={{ position: "relative" }}>
@@ -412,15 +423,10 @@ function App() {
                             {data?.technology?.split(", ")?.[0]}
                           </div>
                           <br />
-                          <div style={{ fontWeight: "300" }}>
+                          {/* <div style={{ fontWeight: "300" }}>
                             {data?.technology?.split(", ")?.[1]}
-                          </div>
+                          </div> */}
                         </Alignment>
-                      </LayoutBox>
-                    </td>
-                    <td>
-                      <LayoutBox>
-                        {data?.subtechnology?.[0]}
                         {toggle && index === clickedIndex ? (
                           <Alignment
                             style={{ cursor: "pointer" }}
@@ -443,13 +449,50 @@ function App() {
                           </Alignment>
                         )}
                       </LayoutBox>
-                      {toggle && index === clickedIndex
-                        ? data?.subtechnology?.map((data, index) => {
-                            return index > 0 ? (
-                              <Alignment>{data}</Alignment>
-                            ) : null;
-                          })
-                        : null}
+                    </td>
+                    {toggle ? (
+                      <td>
+                        {/* <LayoutBox>{data?.subtechnology?.[0]}</LayoutBox> */}
+                        {toggle && index === clickedIndex
+                          ? data?.subtechnology?.map((data, index) => {
+                              return (
+                                <Alignment
+                                  style={{
+                                    marginBottom: "15px",
+                                    position: "relative",
+                                    right: "14px",
+                                  }}
+                                >
+                                  {data?.technology + ": " + data?.amount}
+                                </Alignment>
+                              );
+                            })
+                          : null}
+                      </td>
+                    ) : (
+                      <Alignment style={{ width: "100px" }}></Alignment>
+                    )}
+                    <td style={{ padding: "19px 0px" }}>
+                      <LayoutBox style={{ gap: "24px" }}>
+                        <Alignment
+                          style={{ position: "relative", right: "20px" }}
+                        >
+                          <div
+                            style={{
+                              fontSize: "16px",
+                              lineHeight: "20.85px",
+                              margin: "0px 0px -14px",
+                              fontWeight: "600",
+                              display: "flex",
+                              gap: "4px",
+                              alignItems: "center",
+                            }}
+                          >
+                            {data?.amount}
+                          </div>
+                          <br />
+                        </Alignment>
+                      </LayoutBox>
                     </td>
                   </tr>
                 );
