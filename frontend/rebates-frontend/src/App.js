@@ -12,8 +12,12 @@ function App() {
     building_area: null,
   });
 
+  let rowData = [];
+
   const [toggle, setToggle] = useState(false);
   const [clickedIndex, setClickedIndex] = useState(null);
+  const [highLevelView, setHighLevelView] = useState([]);
+
   const handleInputChange = (value, name) => {
     console.log("nane", name, value);
     setInputValue((prev) => ({
@@ -39,6 +43,7 @@ function App() {
       const highLevelView = await axios.get(
         "http://localhost:8000/high_level_view"
       );
+      setHighLevelView(highLevelView);
       console.log("highLevelView", highLevelView);
     }
 
@@ -71,6 +76,23 @@ function App() {
     },
   ];
 
+  useEffect(() => {
+    if (highLevelView?.length > 0) {
+      Object.entries(highLevelView).map(([key, value], index) => {
+        let subtechnologyArray = [];
+        Object.keys(value)?.map((data, index) => {
+          subtechnologyArray?.push(data);
+        });
+        rowData?.push({
+          technology: key,
+          subtechnology: subtechnologyArray,
+          amount: 0,
+        });
+        console.log("rowData", rowData);
+      });
+    }
+  }, [highLevelView]);
+
   const HIGH_LEVEL_VIEW = {
     headers: [
       "Technology",
@@ -80,34 +102,7 @@ function App() {
       "Details",
       "Payback Period",
     ],
-    rowData: [
-      {
-        technology: "HVAC",
-        subtechnology: ["Sub Tech1", "Sub Tech2"],
-        amount: "$ 14,000",
-      },
-      {
-        technology: "Solar Panel",
-        subtechnology: ["Sub Tech1", "Sub Tech2"],
-        amount: "$ 56,000",
-      },
-      {
-        technology: "Controls",
-        subtechnology: ["Sub Tech1", "Sub Tech2"],
-        title: [
-          {
-            Federal: "$56,000",
-          },
-          {
-            State: "$56,000",
-          },
-          {
-            Local: "$56,000",
-          },
-        ],
-        // amount: "$ 56,000",
-      },
-    ],
+    rowData,
   };
 
   const fetchHighLevelView = async () => {
@@ -302,7 +297,9 @@ function App() {
                       </LayoutBox>
                       {toggle && index === clickedIndex
                         ? data?.subtechnology?.map((data, index) => {
-                            return <Alignment>{data}</Alignment>;
+                            return index > 0 ? (
+                              <Alignment>{data}</Alignment>
+                            ) : null;
                           })
                         : null}
                     </td>
