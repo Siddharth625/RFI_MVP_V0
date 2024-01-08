@@ -88,7 +88,7 @@ async def getUserInfo(userInputData: dict):
     resultDF = fiteredRebateData.copy()
     print(resultDF)
     resultDF = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
-    resultDF.to_csv("RESDF.csv", index = False)
+    # resultDF.to_csv("RESDF.csv", index = False)
     return json.loads(resultDF.to_json(orient="records"))
 
 @app.get('/high_level_view')

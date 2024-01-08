@@ -43,7 +43,7 @@ function App() {
       const highLevelView = await axios.get(
         "http://localhost:8000/high_level_view"
       );
-      setHighLevelView(highLevelView);
+      setHighLevelView(highLevelView?.data.data);
       console.log("highLevelView", highLevelView);
     }
 
@@ -77,7 +77,8 @@ function App() {
   ];
 
   useEffect(() => {
-    if (highLevelView?.length > 0) {
+    if (highLevelView) {
+      console.log("show highlevel", highLevelView)
       Object.entries(highLevelView).map(([key, value], index) => {
         let subtechnologyArray = [];
         Object.keys(value)?.map((data, index) => {
