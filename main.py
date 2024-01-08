@@ -87,14 +87,15 @@ async def getUserInfo(userInputData: dict):
     # tax_amount_data = fiteredRebateData[fiteredRebateData['Incentive Value'] != 'Discount']
     resultDF = fiteredRebateData.copy()
     print(resultDF)
-    resdf = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
-    resdf.to_csv("RESDF.csv", index = False)
-    return json.loads(resdf.to_json(orient="records"))
+    resultDF = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
+    # resultDF.to_csv("RESDF.csv", index = False)
+    return json.loads(resultDF.to_json(orient="records"))
 
 @app.get('/high_level_view')
 async def highLevelView():
     global resultDF
     dfHighLevel = resultDF.copy()
+    print(dfHighLevel.head())
     dfHighLevel = dfHighLevel.groupby(['Technology' , 'Sub-Technology'])['Amt_Estimation'].agg(['median']).reset_index()
     result_dict = {}
     for (category, group_type), group in dfHighLevel.groupby(['Technology' , 'Sub-Technology']):
@@ -102,7 +103,7 @@ async def highLevelView():
         result_dict.setdefault(category, {}).setdefault(group_type, json.loads(group_json))
     result_json = json.dumps(result_dict, indent=2)
     print(result_json)
-    return {"data" : result_json}
+    return {"data" : json.loads(result_json)}
 
 @app.get('/low_level_view')
 async def lowLevelView():
