@@ -309,8 +309,24 @@ function App() {
           Rebates and Incentives
         </LayoutBox>
       </Header>
-      <Alignment style={{ border: "1px solid black", padding: "32px" }}>
-        <Alignment justifyContent="space-evenly" style={{ gap: "24px" }}>
+
+      <Alignment
+        style={{
+          border: "1px solid black",
+          padding: "32px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Alignment
+          style={{
+            gap: "24px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Alignment margin="16px 0px">
             <InputComponent
               handleInputChange={handleInputChange}
@@ -392,7 +408,8 @@ function App() {
                       }}
                     ></Alignment>
                     <Alignment>
-                      {data.name}
+                      <strong>{data.name}</strong>
+
                       <Alignment>{data.amount}</Alignment>
                       <Alignment style={{ margin: "20px 0px 0px" }}>
                         <LayoutBox style={{ gap: "24px" }}>
