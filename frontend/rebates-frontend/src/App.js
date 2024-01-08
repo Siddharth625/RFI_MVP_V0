@@ -34,6 +34,14 @@ function App() {
       zipcode: inputValue?.zipcode,
       building_area: parseFloat(inputValue?.building_area),
     });
+
+    if (response?.data.length > 0) {
+      const highLevelView = await axios.get(
+        "http://localhost:8000/high_level_view"
+      );
+      console.log("highLevelView", highLevelView);
+    }
+
     console.log("data", response);
   };
 
