@@ -42,6 +42,8 @@ function App() {
       let jurisdiction = 0;
       let stateSum = 0;
       let localSum = 0;
+      let discount = 0;
+      let nonDiscount = 0;
       const sourceRebate = response?.data?.map((data) => {
         console.log("dataFromSource", data);
         if (data?.Jurisdiction.toLowerCase() === "federal") {
@@ -50,17 +52,29 @@ function App() {
           stateSum = stateSum + data?.Amt_Estimation;
         } else if (data?.Jurisdiction.toLowerCase() === "utility") {
           localSum = localSum + data?.Amt_Estimation;
+        } else if (data?.["Incentive Type"].toLowerCase() === "discount") {
+          discount = discount + data?.Amt_Estimation;
+        } else if (data?.["Incentive Type"].toLowerCase() === "discount") {
+          discount = discount + data?.Amt_Estimation;
+        } else {
+          nonDiscount = nonDiscount + data?.Amt_Estimation;
         }
         return;
       });
       let updatedJurisdiction = Math.round(jurisdiction * 100) / 100;
       let updatedStateSum = Math.round(stateSum * 100) / 100;
       let updatedLocalSum = Math.round(localSum * 100) / 100;
+      let updatedDiscount = Math.round(discount * 100) / 100;
+      let updatedNonDiscount = Math.round(nonDiscount * 100) / 100;
+
       setSource({
         updatedJurisdiction,
         updatedStateSum,
         updatedLocalSum,
+        updatedDiscount,
+        updatedNonDiscount,
       });
+
       const highLevelView = await axios.get(
         "http://localhost:8000/high_level_view"
       );
@@ -101,11 +115,11 @@ function App() {
   const SUMMARY = [
     {
       name: "Upfront discounts",
-      amount: "$ 14,000",
+      amount: `$ ${source?.updatedDiscount}`,
     },
     {
       name: "Tax Incentives",
-      amount: "$ 56,000",
+      amount: `$ ${source?.updatedNonDiscount}`,
     },
     {
       name: "Breakdown by source",
