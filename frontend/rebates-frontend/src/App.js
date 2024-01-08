@@ -25,6 +25,7 @@ function App() {
   };
 
   const [viewData, setViewData] = useState();
+  const [source, setSource] = useState([]);
 
   const postUtilityData = async () => {
     const response = await axios.post("http://localhost:8000/get_user_info", {
@@ -38,6 +39,28 @@ function App() {
     });
 
     if (response?.data) {
+      let jurisdiction = 0;
+      let stateSum = 0;
+      let localSum = 0;
+      const sourceRebate = response?.data?.map((data) => {
+        console.log("dataFromSource", data);
+        if (data?.Jurisdiction.toLowerCase() === "federal") {
+          jurisdiction = jurisdiction + data?.Amt_Estimation;
+        } else if (data?.Jurisdiction.toLowerCase() === "state") {
+          stateSum = stateSum + data?.Amt_Estimation;
+        } else if (data?.Jurisdiction.toLowerCase() === "utility") {
+          localSum = localSum + data?.Amt_Estimation;
+        }
+        return;
+      });
+      let updatedJurisdiction = Math.round(jurisdiction * 100) / 100;
+      let updatedStateSum = Math.round(stateSum * 100) / 100;
+      let updatedLocalSum = Math.round(localSum * 100) / 100;
+      setSource({
+        updatedJurisdiction,
+        updatedStateSum,
+        updatedLocalSum,
+      });
       const highLevelView = await axios.get(
         "http://localhost:8000/high_level_view"
       );
@@ -53,7 +76,7 @@ function App() {
           console.log("subet", data);
           subtechnologyArray?.push({
             technology: data?.[0]?.["Sub-Technology"],
-            amount: Math.round(data?.[0]?.median + Number.EPSILON * 100) / 100,
+            amount: Math.round(data?.[0]?.median * 100) / 100,
           });
         });
         console.log("keyss", key, value);
@@ -62,7 +85,7 @@ function App() {
         rowData?.push({
           technology: key,
           subtechnology: subtechnologyArray,
-          amount: Math.round(sum + Number.EPSILON * 100) / 100,
+          amount: Math.round(sum * 100) / 100,
         });
         console.log("rowData", rowData);
       });
@@ -88,13 +111,13 @@ function App() {
       name: "Breakdown by source",
       title: [
         {
-          Federal: "$56,000",
+          Federal: `$ ${source?.updatedJurisdiction}`,
         },
         {
-          State: "$56,000",
+          State: `$ ${source?.updatedStateSum}`,
         },
         {
-          Local: "$56,000",
+          Local: `$ ${source?.updatedLocalSum}`,
         },
       ],
       // amount: "$ 56,000",
