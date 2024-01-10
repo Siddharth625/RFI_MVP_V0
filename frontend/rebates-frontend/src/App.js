@@ -102,14 +102,14 @@ function App() {
           Object.keys(value)?.map((childKey, _) => {
             programs?.push({program: childKey, programDetails});
           });
+
           programDetailsArray?.push(programDetails);
-            console.log('provider', provider, Object?.values(provider)?.[0]?.Link?.[0]);
             programStructure = { ...programStructure, [key]: programs };
         })
         
       });
 
-      console.log("programDetails", programDetailsArray, programStructure);
+      console.log("programDetails22", programDetailsArray, programStructure);
       Object.entries(highLevelView?.data?.data).map(([key, value], index) => {
         let subtechnologyArray = [];
         let sum = 0;
@@ -353,6 +353,7 @@ function App() {
               </tr>
 
               {highLevelView?.rowData?.map((data, index) => {
+                console.log("data121",data);
                 return (
                   <tr style={{ position: "relative", left: "155px" }}>
                     <td style={{ padding: "19px 0px" }}>
@@ -416,7 +417,7 @@ function App() {
                       <td>
                         {/* <LayoutBox>{data?.subtechnology?.[0]}</LayoutBox> */}
                         {toggle && index === clickedIndex
-                          ? data?.subtechnology?.map((data, index) => {
+                          ? data?.subtechnology?.map((item, index) => {
                               return (
                                 <Alignment
                                   style={{
@@ -425,12 +426,13 @@ function App() {
                                     right: "14px",
                                   }}
                                 >
-                                  {data?.technology + ": " + "$" + data?.amount}
+                                  {item?.technology + ": " + "$" + item?.amount}
                                 </Alignment>
                               );
                             })
                           : programView && index === clickedIndex
-                          ? data?.program?.map((data, index) => {
+                          ? data?.program?.map((programData, index) => {
+                                          console.log("pro121", programData);
                               return (
                                 <Alignment
                                   style={{
@@ -439,8 +441,8 @@ function App() {
                                     right: "14px",
                                   }}
                                 >
-                                  {data?.program + " | " + data?.programDetails?.provider + " | " + data?.programDetails?.amount_estimation + " | " }
-                                  <a href={data?.programDetails?.link}>Apply</a>
+                                  {programData?.program + " | " + programData?.programDetails?.provider + " | " + programData?.programDetails?.amount_estimation + " | " }
+                                  <a href={programData?.programDetails?.link}>Apply</a>
                                 </Alignment>
                               );
                             })
