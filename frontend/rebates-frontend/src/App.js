@@ -24,253 +24,96 @@ function App() {
     }));
   };
 
-  const [viewData, setViewData] = useState();
   const [source, setSource] = useState([]);
-  const [programData, setProgramData] = useState([]);
-
-  const updatedTechnology = {
-    Controls: {
-      "Building Controls": [
-        {
-          Technology: "Controls",
-          "Sub-Technology": "Building Controls",
-          median: 405,
-        },
-      ],
-      Controls: [
-        {
-          Technology: "Controls",
-          "Sub-Technology": "Controls",
-          median: 10000,
-        },
-      ],
-    },
-    "Custom Program": {
-      Lighting: [
-        {
-          Technology: "Custom Program",
-          "Sub-Technology": "Lighting",
-          median: 189,
-        },
-      ],
-    },
-    HVAC: {
-      "Air Compressor": [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "Air Compressor",
-          median: 225,
-        },
-      ],
-      "Air Conditioners": [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "Air Conditioners",
-          median: 211.3125,
-        },
-      ],
-      HVAC: [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "HVAC",
-          median: 6410,
-        },
-      ],
-      "HVAC Controls": [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "HVAC Controls",
-          median: 150,
-        },
-      ],
-      "Heat Pump": [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "Heat Pump",
-          median: 1102.679325,
-        },
-      ],
-      Heaters: [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "Heaters",
-          median: 57.0351375,
-        },
-      ],
-      "Pumps & Motors": [
-        {
-          Technology: "HVAC",
-          "Sub-Technology": "Pumps & Motors",
-          median: 180,
-        },
-      ],
-    },
-    Insulation: {
-      Envelope: [
-        {
-          Technology: "Insulation",
-          "Sub-Technology": "Envelope",
-          median: 734.4,
-        },
-      ],
-      Insulation: [
-        {
-          Technology: "Insulation",
-          "Sub-Technology": "Insulation",
-          median: 6410,
-        },
-      ],
-      Pipe: [
-        {
-          Technology: "Insulation",
-          "Sub-Technology": "Pipe",
-          median: 314.6721426447,
-        },
-      ],
-    },
-    "LED Lighting": {
-      Downlights: [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "Downlights",
-          median: 500,
-        },
-      ],
-      Exterior: [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "Exterior",
-          median: 306,
-        },
-      ],
-      Interior: [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "Interior",
-          median: 400,
-        },
-      ],
-      "LED Controls": [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "LED Controls",
-          median: 3.41796875,
-        },
-      ],
-      "LED Lighting": [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "LED Lighting",
-          median: 6410,
-        },
-      ],
-      Lamps: [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "Lamps",
-          median: 344.25,
-        },
-      ],
-      Troffers: [
-        {
-          Technology: "LED Lighting",
-          "Sub-Technology": "Troffers",
-          median: 286.875,
-        },
-      ],
-    },
-    Solar: {
-      Solar: [
-        {
-          Technology: "Solar",
-          "Sub-Technology": "Solar",
-          median: 10000,
-        },
-      ],
-    },
-  };
-
   const [programView, setProgramView] = useState([]);
+
   const postUtilityData = async () => {
-    // const response = await axios.post("http://localhost:8000/get_user_info", {
-    //   utility: inputValue?.utility,
-    //   city: "NY",
-    //   state: "NY",
-    //   county: "NY",
-    //   country: "USA",
-    //   zipcode: inputValue?.zipcode,
-    //   building_area: parseFloat(inputValue?.building_area),
-    // });
-
-    // if (response?.data) {
-    let jurisdiction = 0;
-    let stateSum = 0;
-    let localSum = 0;
-    let discount = 0;
-    let nonDiscount = 0;
-    // const sourceRebate = response?.data?.map((data) => {
-    //   console.log("dataFromSource", data);
-    //   if (data?.Jurisdiction.toLowerCase() === "federal") {
-    //     jurisdiction = jurisdiction + data?.Amt_Estimation;
-    //   } else if (data?.Jurisdiction.toLowerCase() === "state") {
-    //     stateSum = stateSum + data?.Amt_Estimation;
-    //   } else if (data?.Jurisdiction.toLowerCase() === "utility") {
-    //     localSum = localSum + data?.Amt_Estimation;
-    //   }
-    //   if (data?.["Incentive Type"].toLowerCase() === "discount") {
-    //     discount = discount + data?.Amt_Estimation;
-    //   } else {
-    //     nonDiscount = nonDiscount + data?.Amt_Estimation;
-    //   }
-    //   return;
-    // });
-    let updatedJurisdiction = Math.round(jurisdiction * 100) / 100;
-    let updatedStateSum = Math.round(stateSum * 100) / 100;
-    let updatedLocalSum = Math.round(localSum * 100) / 100;
-    let updatedDiscount = Math.round(discount * 100) / 100;
-    let updatedNonDiscount = Math.round(nonDiscount * 100) / 100;
-
-    setSource({
-      updatedJurisdiction,
-      updatedStateSum,
-      updatedLocalSum,
-      updatedDiscount,
-      updatedNonDiscount,
+    const response = await axios.post("http://localhost:8000/get_user_info", {
+      utility: inputValue?.utility,
+      city: "NY",
+      state: "NY",
+      county: "NY",
+      country: "USA",
+      zipcode: inputValue?.zipcode,
+      building_area: parseFloat(inputValue?.building_area),
     });
 
-    // const highLevelView = await axios.get(
-    //   "http://localhost:8000/high_level_view"
-    // );
-    getLowLevelView();
-    // console.log("highLevelView", highLevelView);
-
-    Object.entries(updatedTechnology).map(([key, value], index) => {
-      let subtechnologyArray = [];
-      let sum = 0;
-      Object.values(value)?.map((data) => {
-        sum = sum + data?.[0]?.median;
+    if (response?.data) {
+      let jurisdiction = 0;
+      let stateSum = 0;
+      let localSum = 0;
+      let discount = 0;
+      let nonDiscount = 0;
+      const sourceRebate = response?.data?.map((data) => {
+        if (data?.Jurisdiction.toLowerCase() === "federal") {
+          jurisdiction = jurisdiction + data?.Amt_Estimation;
+        } else if (data?.Jurisdiction.toLowerCase() === "state") {
+          stateSum = stateSum + data?.Amt_Estimation;
+        } else if (data?.Jurisdiction.toLowerCase() === "utility") {
+          localSum = localSum + data?.Amt_Estimation;
+        }
+        if (data?.["Incentive Type"].toLowerCase() === "discount") {
+          discount = discount + data?.Amt_Estimation;
+        } else {
+          nonDiscount = nonDiscount + data?.Amt_Estimation;
+        }
+        return;
       });
-      Object.values(value)?.map((data, index) => {
-        console.log("subet", data);
-        subtechnologyArray?.push({
-          technology: data?.[0]?.["Sub-Technology"],
-          amount: Math.round(data?.[0]?.median * 100) / 100,
+      let updatedJurisdiction = Math.round(jurisdiction * 100) / 100;
+      let updatedStateSum = Math.round(stateSum * 100) / 100;
+      let updatedLocalSum = Math.round(localSum * 100) / 100;
+      let updatedDiscount = Math.round(discount * 100) / 100;
+      let updatedNonDiscount = Math.round(nonDiscount * 100) / 100;
+
+      setSource({
+        updatedJurisdiction,
+        updatedStateSum,
+        updatedLocalSum,
+        updatedDiscount,
+        updatedNonDiscount,
+      });
+
+      const highLevelView = await axios.get(
+        "http://localhost:8000/high_level_view"
+      );
+      const lowlevelview = await axios.get("/lowlevelview");
+
+      let programStructure = {};
+      let programs = [];
+
+      Object.entries(lowlevelview)?.map(([key, value], index) => {
+        Object.keys(value)?.map((childKey, _) => {
+          programs?.push(childKey);
+        });
+        programStructure = { ...programStructure, [key]: programs };
+      });
+
+      Object.entries(highLevelView?.data).map(([key, value], index) => {
+        let subtechnologyArray = [];
+        let sum = 0;
+        Object.values(value)?.map((data) => {
+          sum = sum + data?.[0]?.median;
+        });
+        Object.values(value)?.map((data, index) => {
+          subtechnologyArray?.push({
+            technology: data?.[0]?.["Sub-Technology"],
+            amount: Math.round(data?.[0]?.median * 100) / 100,
+          });
+        });
+
+        rowData?.push({
+          technology: key,
+          subtechnology: subtechnologyArray,
+          amount: Math.round(sum * 100) / 100,
+          program: programStructure?.[key],
         });
       });
 
-      rowData?.push({
-        technology: key,
-        subtechnology: subtechnologyArray,
-        amount: Math.round(sum * 100) / 100,
+      setHighLevelView({
+        headers: ["Technology", "Subtechnology", "Maximum Amount"],
+        rowData,
       });
-    });
-    setHighLevelView({
-      headers: ["Technology", "Subtechnology", "Maximum Amount"],
-      rowData,
-    });
-    // }
-
-    // console.log("data", response);
+    }
   };
 
   const SUMMARY = [
@@ -330,48 +173,6 @@ function App() {
       },
     },
   };
-
-  const getLowLevelView = async () => {
-    // const response = await axios.get("/lowlevelview");
-    // console.log("technologyName", technologyName);
-    let programArray = [];
-    // debugger;
-    let rowData = [];
-    Object.entries(program)?.map(([key, value], index) => {
-      Object.entries(value)?.map(([childKey, chileValue], index) => {
-        programArray?.push(childKey);
-      });
-      rowData?.push({
-        technology: key,
-        subProgram: programArray,
-      });
-      // programArray?.push({ technology: key, subtechnology:  });
-      // setProgramData({
-      //   headers: ["Technology", "Subtechnology", "Maximum Amount"],
-      //   programArray,
-      // });
-
-      console.log("key101", key, value);
-    });
-    setProgramData(rowData);
-    // const mutateRow = highLevelView?.rowData
-    //   ?.filter((data) => data?.technology === technologyName)
-    //   ?.map((data) => {
-    //     const updatedObj = {
-    //       ...data,
-    //       subtechnology: programArray,
-    //     };
-    //     return updatedObj;
-    //   });
-    console.log("mutateRow", rowData);
-    // setHighLevelView({
-    //   headers: ["Technology", "Subtechnology", "Maximum Amount"],
-    //   rowData: mutateRow,
-    // });
-    // setToggle(!toggle);
-  };
-
-  console.log("programView11", programView, toggle, highLevelView);
 
   return (
     <Alignment style={{ padding: "32px" }}>
@@ -519,6 +320,8 @@ function App() {
                           ? headerData
                           : toggle
                           ? headerData
+                          : programView
+                          ? "SubProgram"
                           : null}
                       </Alignment>
                     </th>
@@ -526,122 +329,129 @@ function App() {
                 })}
               </tr>
 
-              {program
-                ? programData?.map((data, index) => {
-                    return (
-                      <tr>
-                        <td>{}</td>
-                      </tr>
-                    );
-                  })
-                : highLevelView?.rowData?.map((data, index) => {
-                    return (
-                      <tr style={{ position: "relative", left: "155px" }}>
-                        <td style={{ padding: "19px 0px" }}>
-                          <LayoutBox style={{ gap: "24px" }}>
-                            <Alignment style={{ position: "relative" }}>
-                              <div
-                                style={{
-                                  fontSize: "16px",
-                                  lineHeight: "20.85px",
-                                  margin: "0px 0px -14px",
-                                  fontWeight: "600",
-                                  display: "flex",
-                                  gap: "4px",
-                                  alignItems: "center",
-                                }}
-                              >
-                                {data?.technology?.split(", ")?.[0]}
-                              </div>
-                              <br />
-                              {/* <div style={{ fontWeight: "300" }}>
+              {highLevelView?.rowData?.map((data, index) => {
+                return (
+                  <tr style={{ position: "relative", left: "155px" }}>
+                    <td style={{ padding: "19px 0px" }}>
+                      <LayoutBox style={{ gap: "24px" }}>
+                        <Alignment style={{ position: "relative" }}>
+                          <div
+                            style={{
+                              fontSize: "16px",
+                              lineHeight: "20.85px",
+                              margin: "0px 0px -14px",
+                              fontWeight: "600",
+                              display: "flex",
+                              gap: "4px",
+                              alignItems: "center",
+                            }}
+                          >
+                            {data?.technology?.split(", ")?.[0]}
+                          </div>
+                          <br />
+                          {/* <div style={{ fontWeight: "300" }}>
                             {data?.technology?.split(", ")?.[1]}
                           </div> */}
-                            </Alignment>
-                            {toggle && index === clickedIndex ? (
-                              <Alignment
-                                style={{ cursor: "pointer" }}
-                                onClick={() => {
-                                  setToggle(!toggle);
-                                  setClickedIndex(index);
-                                }}
-                              >
-                                &uarr;
-                              </Alignment>
-                            ) : (
-                              <Alignment
-                                style={{ cursor: "pointer" }}
-                                onClick={() => {
-                                  setToggle(!toggle);
-                                  setClickedIndex(index);
-                                }}
-                              >
-                                &darr;
-                              </Alignment>
-                            )}
-                            <Alignment>
-                              <button
-                                onClick={() => {
-                                  setProgramView(!programView);
-                                }}
-                              >
-                                Program
-                              </button>
-                            </Alignment>
-                          </LayoutBox>
-                        </td>
-                        {toggle ? (
-                          <td>
-                            {/* <LayoutBox>{data?.subtechnology?.[0]}</LayoutBox> */}
-                            {toggle && index === clickedIndex
-                              ? data?.subtechnology?.map((data, index) => {
-                                  return (
-                                    <Alignment
-                                      style={{
-                                        marginBottom: "15px",
-                                        position: "relative",
-                                        right: "14px",
-                                      }}
-                                    >
-                                      {data?.technology +
-                                        ": " +
-                                        "$" +
-                                        data?.amount}
-                                    </Alignment>
-                                  );
-                                })
-                              : null}
-                          </td>
+                        </Alignment>
+                        {toggle && index === clickedIndex ? (
+                          <Alignment
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setToggle(!toggle);
+                              setClickedIndex(index);
+                            }}
+                          >
+                            &uarr;
+                          </Alignment>
                         ) : (
-                          <Alignment style={{ width: "100px" }}></Alignment>
+                          <Alignment
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setToggle(!toggle);
+                              setClickedIndex(index);
+                            }}
+                          >
+                            &darr;
+                          </Alignment>
                         )}
+                        <Alignment>
+                          <button
+                            onClick={() => {
+                              setProgramView(!programView);
+                              setClickedIndex(index);
+                              if (programView) {
+                                setToggle(false);
+                              }
+                            }}
+                          >
+                            Program
+                          </button>
+                        </Alignment>
+                      </LayoutBox>
+                    </td>
+                    {toggle || program ? (
+                      <td>
+                        {/* <LayoutBox>{data?.subtechnology?.[0]}</LayoutBox> */}
+                        {toggle && index === clickedIndex
+                          ? data?.subtechnology?.map((data, index) => {
+                              return (
+                                <Alignment
+                                  style={{
+                                    marginBottom: "15px",
+                                    position: "relative",
+                                    right: "14px",
+                                  }}
+                                >
+                                  {data?.technology + ": " + "$" + data?.amount}
+                                </Alignment>
+                              );
+                            })
+                          : programView && index === clickedIndex
+                          ? data?.program?.map((data, index) => {
+                              return (
+                                <Alignment
+                                  style={{
+                                    marginBottom: "15px",
+                                    position: "relative",
+                                    right: "14px",
+                                  }}
+                                >
+                                  {data}
+                                </Alignment>
+                              );
+                            })
+                          : null}
+                      </td>
+                    ) : (
+                      <Alignment style={{ width: "100px" }}></Alignment>
+                    )}
 
-                        <td style={{ padding: "19px 0px" }}>
-                          <LayoutBox style={{ gap: "24px" }}>
-                            <Alignment
-                              style={{ position: "relative", right: "20px" }}
-                            >
-                              <div
-                                style={{
-                                  fontSize: "16px",
-                                  lineHeight: "20.85px",
-                                  margin: "0px 0px -14px",
-                                  fontWeight: "600",
-                                  display: "flex",
-                                  gap: "4px",
-                                  alignItems: "center",
-                                }}
-                              >
-                                {"$" + data?.amount}
-                              </div>
-                              <div></div>
-                              <br />
-                            </Alignment>
-                          </LayoutBox>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                    <td style={{ padding: "19px 0px" }}>
+                      <LayoutBox style={{ gap: "24px" }}>
+                        <Alignment
+                          style={{ position: "relative", right: "20px" }}
+                        >
+                          <div
+                            style={{
+                              fontSize: "16px",
+                              lineHeight: "20.85px",
+                              margin: "0px 0px -14px",
+                              fontWeight: "600",
+                              display: "flex",
+                              gap: "4px",
+                              alignItems: "center",
+                            }}
+                          >
+                            {"$" + data?.amount}
+                          </div>
+                          <div></div>
+                          <br />
+                        </Alignment>
+                      </LayoutBox>
+                    </td>
+                  </tr>
+                );
+              })}
             </table>
           </Alignment>
         </Alignment>
