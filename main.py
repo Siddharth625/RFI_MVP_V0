@@ -119,8 +119,7 @@ async def lowLevelView():
             .setdefault(size, {}) \
             .setdefault(location, json.loads(group_json))
     result_json = json.dumps(result_dict, indent=2)
-    print(result_json)
-    return {"data" : result_json}
+    return {"data" : json.loads(result_json)}
 
 
 if __name__ == "__main__":

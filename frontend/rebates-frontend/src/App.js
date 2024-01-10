@@ -27,6 +27,14 @@ function App() {
   const [source, setSource] = useState([]);
   const [programView, setProgramView] = useState([]);
 
+  const PROGRAM_ESTIMATION= {
+    "('Amt_Estimation', 'median')" : 'amount_estimation',
+    "('Incentive Name', '')" : 'incentive_name',
+    "('Provider', '')" : 'provider',
+    "('Technology', '')" : 'technology',
+    "('Website Link', '')" : 'link',
+  };
+
   const postUtilityData = async () => {
     const response = await axios.post("http://localhost:8000/get_user_info", {
       utility: inputValue?.utility,
@@ -76,19 +84,33 @@ function App() {
       const highLevelView = await axios.get(
         "http://localhost:8000/high_level_view"
       );
-      const lowlevelview = await axios.get("/lowlevelview");
+      const lowlevelview = await axios.get(
+        "http://localhost:8000/low_level_view"
+      );
 
       let programStructure = {};
-      let programs = [];
-
-      Object.entries(lowlevelview)?.map(([key, value], index) => {
-        Object.keys(value)?.map((childKey, _) => {
-          programs?.push(childKey);
-        });
-        programStructure = { ...programStructure, [key]: programs };
+        let programDetailsArray = [];
+        console.log("low level", lowlevelview?.data, highLevelView?.data);
+      Object.entries(lowlevelview?.data?.data)?.map(([key, value], _) => {
+       
+        Object.entries(value)?.map(([program, provider])=>{
+        let programs = [];
+        let programDetails = {};
+          Object?.entries(Object.values(provider)?.[0]?.Link?.[0])?.map(([key, value])=>{
+            programDetails = {...programDetails, [PROGRAM_ESTIMATION?.[key]]:value}
+          })
+          Object.keys(value)?.map((childKey, _) => {
+            programs?.push({program: childKey, programDetails});
+          });
+          programDetailsArray?.push(programDetails);
+            console.log('provider', provider, Object?.values(provider)?.[0]?.Link?.[0]);
+            programStructure = { ...programStructure, [key]: programs };
+        })
+        
       });
 
-      Object.entries(highLevelView?.data).map(([key, value], index) => {
+      console.log("programDetails", programDetailsArray, programStructure);
+      Object.entries(highLevelView?.data?.data).map(([key, value], index) => {
         let subtechnologyArray = [];
         let sum = 0;
         Object.values(value)?.map((data) => {
@@ -116,6 +138,7 @@ function App() {
     }
   };
 
+  console.log("high level view", highLevelView)
   const SUMMARY = [
     {
       name: "Upfront discounts",
@@ -416,7 +439,8 @@ function App() {
                                     right: "14px",
                                   }}
                                 >
-                                  {data}
+                                  {data?.program + " | " + data?.programDetails?.provider + " | " + data?.programDetails?.amount_estimation + " | " }
+                                  <a href={data?.programDetails?.link}>Apply</a>
                                 </Alignment>
                               );
                             })
