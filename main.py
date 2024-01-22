@@ -43,10 +43,6 @@ userZipcode = 0
 buildingArea = 0
 resultDF = pd.DataFrame()
 
-@app.get('/')
-def index():
-    return {'Hello' : "World"}
-
 @app.post('/get_user_info')
 async def getUserInfo(userInputData: dict):
     global userCity
@@ -90,6 +86,18 @@ async def getUserInfo(userInputData: dict):
     resultDF = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
     # resultDF.to_csv("RESDF.csv", index = False)
     return json.loads(resultDF.to_json(orient="records"))
+
+@app.get('/statstodisplay')
+async def statstodisplay():
+    global resultDF
+    dfStats = resultDF.copy()
+    # Federal Stats
+    federalStat = len(dfStats[dfStats["Jurisdiction"] == "Federal"])
+    stateStat = len(dfStats[dfStats["Jurisdiction"] == "State"])
+    utilityStat = len(dfStats[dfStats["Jurisdiction"] == "Utility"])
+    return {"federalStat" : federalStat,
+            "stateStat" : stateStat,
+            "utilityStat" : utilityStat}
 
 @app.get('/high_level_view')
 async def highLevelView():
