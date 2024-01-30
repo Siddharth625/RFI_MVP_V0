@@ -42,6 +42,89 @@ userCountry = ""
 userZipcode = 0
 buildingArea = 0
 resultDF = pd.DataFrame()
+TaxresultDF = pd.DataFrame()
+
+
+@app.post('/getUserData')
+async def getUserData(userInputData: dict):
+    global userCity
+    global userCounty
+    global userState
+    global userCountry
+    global userZipcode
+    global buildingArea
+    global userUtility
+    global resultDF
+
+    # Data from the user - Zipcode & Building Area
+    userZipcode = int(userInputData['zipcode'])
+    buildingArea = float(userInputData["building_area"])
+
+    # Configuring City, State, County and Country manually
+    # For future versions we require a service which gives us the city, state, country details with just a zipcode
+    if 89999 < userZipcode < 96162:
+        userState = "CA"
+    else:
+        userState = "NY"
+    dfZipcode = identification_class.locationConfig(userState, "USA")
+    
+    # Location configuration using user zipcode
+    userCity = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["City"].iloc[0]
+    userCounty = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["County"].iloc[0]
+    userState = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["State"].iloc[0]
+    userCountry = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["Country"].iloc[0]
+    return {
+            "status" : 200,
+            "zipcode" : userZipcode,
+            "city": userCity,
+            "state" : userState,
+            "county" : userCounty,
+            "country" : userCountry,
+            "building area" : buildingArea
+            }
+
+#------------------------------------- Above Code Working Fine ---------------------------------------------
+
+@app.post('/tax_incentives')
+async def CalculateTaxIncentives(userSelectedTech : list):
+    global TaxresultDF
+    TaxrebateData = databaseV2.copy()
+    TaxresultDF = TaxrebateData[(TaxrebateData["Jurisdiction"] == "Federal")]
+
+
+    return json.loads(TaxresultDF.to_json(orient="records"))
+
+
+
+    # tax_table = resultDF.copy()
+    # tax_table = tax_table[tax_table["Jurisdiction"] == "Federal"]
+    # userSelectedTech = ["HVAC", "LED","Insulation","Controls"]
+    # # userSelectedTech = ["All"]
+    # Section179D_params = {
+    # 'Base_Deduction_High' : 1.00,
+    # 'Base_Deduction_Low' : 0.50,
+    # 'Base_Deduction_Inc' : 0.02,
+    # 'Bonus_Deduction_High' : 5.00,
+    # 'Bonus_Deduction_Low' : 2.50,
+    # 'Bonus_Deduction_Inc' : 0.10,
+    # 'Energy_Efficiency_Low' : 0.25,
+    # 'Energy_Efficiency_High' : 0.50,
+    # 'Prevailing_Wages_Law' : 1,
+    # 'Apprenticeship_Hours_Met' : 1,
+    # }
+    # energy_eff_lst = [0.25, 0.5]
+    # buildingArea = 20000
+    # return IRA_179D(energy_eff_lst, buildingArea, Section179D_params)
+
+
+
+
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
+
 
 @app.post('/get_user_info')
 async def getUserInfo(userInputData: dict):
@@ -75,7 +158,7 @@ async def getUserInfo(userInputData: dict):
 
     # Filtered incentives based on locality
     rebateData = databaseV2.copy()
-    fiteredRebateData = rebateData[ (rebateData["State"] == userCountry) | \
+    fiteredRebateData = rebateData[(rebateData["State"] == userCountry) | \
                                 ((rebateData["State"] == userState) & (rebateData["County"] == userState)) | \
                                 (rebateData["County"] == userCounty)]
     # fiteredRebateData['Estimated Incentive Value'] = fiteredRebateData['Estimated Incentive Value'].astype(float)
@@ -130,6 +213,4 @@ async def lowLevelView():
     return {"data" : json.loads(result_json)}
 
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    
