@@ -4,13 +4,15 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import json
 from backend.identification import Identification
-from backend.constants import databaseV2
+from backend.constants import *
 from backend.assumptions import Assumptions
+from backend.rebate_fn import rebateFunctionsClass
 # import google.cloud.logging
 # client = google.cloud.logging.Client()
 
 identification_class = Identification()
 assumptions = Assumptions()
+rebateFunctions = rebateFunctionsClass()
 
 app = FastAPI()
 
@@ -83,42 +85,46 @@ async def getUserData(userInputData: dict):
             "building area" : buildingArea
             }
 
-#------------------------------------- Above Code Working Fine ---------------------------------------------
-
 @app.post('/tax_incentives')
-async def CalculateTaxIncentives(userSelectedTech : list):
-    global TaxresultDF
-    TaxrebateData = databaseV2.copy()
-    TaxresultDF = TaxrebateData[(TaxrebateData["Jurisdiction"] == "Federal")]
+async def CalculateTaxIncentives():
+    global taxTable
+    TaxrebateData = Nexus_DB_Path_Tax_db.copy()
+    TaxresultDF = TaxrebateData[(TaxrebateData["State"] == userCountry) | \
+                                (TaxrebateData["State"] == userState)]
+    print(TaxresultDF)
+    TaxresultDF["Amount Estimation"] = None
+    taxCalcRes = []
+    for taxRebate in TaxresultDF["Incentive_ID"].tolist():
+        if taxRebate in ["USA_FED_0001","USA_FED_0002","USA_FED_0003"]:
+            if taxRebate == "USA_FED_0001":
+                IRA_179D_res = rebateFunctions.IRA_179D(buildingArea)
+                TaxresultDF.loc[TaxresultDF['Incentive_ID'] == taxRebate, 'Amount Estimation'] = \
+                                                            "$" + \
+                                                            str(IRA_179D_res[0]["Base Deduction"]) + \
+                                                            " - " + \
+                                                            "$" + \
+                                                            str(IRA_179D_res[0]["Bonus Deduction"])
+                taxCalcRes.append({"Incentive ID" : taxRebate,"Result" : IRA_179D_res})
+            elif taxRebate == "USA_FED_0002":
+                IRA_ITC_res = rebateFunctions.IRA_ITC(buildingArea)
+                print(IRA_ITC_res)
+                TaxresultDF.loc[TaxresultDF['Incentive_ID'] == taxRebate, 'Amount Estimation'] = \
+                                                            "$" + str(IRA_ITC_res[1]["Amount"])
+                taxCalcRes.append({"Incentive ID" : taxRebate,"Result" : IRA_ITC_res})
+            elif taxRebate == "USA_FED_0003":
+                IRA_PTC_res = rebateFunctions.IRA_PTC(buildingArea)
+                TaxresultDF.loc[TaxresultDF['Incentive_ID'] == taxRebate, 'Amount Estimation'] = \
+                                                            "$" + str(IRA_PTC_res[1]["Amount"])
+                taxCalcRes.append({"Incentive ID" : taxRebate,"Result" : IRA_PTC_res})
+        else:
+            TaxresultDF.loc[TaxresultDF['Incentive_ID'] == taxRebate, 'Amount Estimation'] = "Variable Amount"
 
-
-    return json.loads(TaxresultDF.to_json(orient="records"))
-
-
-
-    # tax_table = resultDF.copy()
-    # tax_table = tax_table[tax_table["Jurisdiction"] == "Federal"]
-    # userSelectedTech = ["HVAC", "LED","Insulation","Controls"]
-    # # userSelectedTech = ["All"]
-    # Section179D_params = {
-    # 'Base_Deduction_High' : 1.00,
-    # 'Base_Deduction_Low' : 0.50,
-    # 'Base_Deduction_Inc' : 0.02,
-    # 'Bonus_Deduction_High' : 5.00,
-    # 'Bonus_Deduction_Low' : 2.50,
-    # 'Bonus_Deduction_Inc' : 0.10,
-    # 'Energy_Efficiency_Low' : 0.25,
-    # 'Energy_Efficiency_High' : 0.50,
-    # 'Prevailing_Wages_Law' : 1,
-    # 'Apprenticeship_Hours_Met' : 1,
-    # }
-    # energy_eff_lst = [0.25, 0.5]
-    # buildingArea = 20000
-    # return IRA_179D(energy_eff_lst, buildingArea, Section179D_params)
-
-
-
-
+    result_dict = {
+        "status" : 200,
+        "Tax_DF" : json.loads(TaxresultDF.to_json(orient="records")),
+        "Tax_Rebate_Calc_List" : taxCalcRes,
+    }
+    return result_dict
 
 
 if __name__ == "__main__":

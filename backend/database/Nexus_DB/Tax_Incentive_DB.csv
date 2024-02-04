@@ -1,0 +1,8 @@
+﻿Incentive_ID,Program Name,Website Link,State,County,Jurisdiction,Provider,Incentive Type,Technology,Notes
+USA_FED_0001,179D Commercial Buildings Energy-Efficiency Tax Deduction,https://www.energy.gov/eere/buildings/179d-commercial-buildings-energy-efficiency-tax-deduction,USA,USA,Federal,IRS,Tax Deduction,"HVAC, Insulation, Lighting",
+USA_FED_0002,Federal Solar Tax Credits for Businesses - Investment Tax Credit,https://www.energy.gov/eere/solar/federal-solar-tax-credits-businesses,USA,USA,Federal,IRS,Tax Credit,Solar,
+USA_FED_0003,Federal Solar Tax Credits for Businesses - Production Tax Credit,https://www.energy.gov/eere/solar/federal-solar-tax-credits-businesses,USA,USA,Federal,IRS,Tax Credit,Solar,
+USA_FED_0004,MACRS Depreciation,https://corporatefinanceinstitute.com/resources/accounting/macrs-depreciation/,USA,USA,Federal,IRS,Tax Deduction,All Products,
+USA_CA_TAX_0001,Sales and Use Tax Exemption for Electric Power Generation and Storage Equipment,https://help.covetool.com/en/articles/4529706-solar-panel-cost-residential-commercial,CA,CA,State,"California Department of Tax and Fee Administration
+",Tax Exemption,All Products,
+USA_CA_TAX_0002,Property Tax Exclusion for Solar Energy Systems and Solar Plus Storage System,https://www.boe.ca.gov/proptaxes/active-solar-energy-system.htm#Description,CA,CA,State,California Department of Tax and Fee Administration,Tax Exemption,Solar,
