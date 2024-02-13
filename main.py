@@ -5,14 +5,14 @@ import pandas as pd
 import json
 from backend.identification import Identification
 from backend.constants import *
-from backend.assumptions import Assumptions
 from backend.rebate_fn import rebateFunctionsClass
+from backend.discounts import discountFunctionsClass
 # import google.cloud.logging
 # client = google.cloud.logging.Client()
 
 identification_class = Identification()
-assumptions = Assumptions()
 rebateFunctions = rebateFunctionsClass()
+discountFunctions = discountFunctionsClass()
 
 app = FastAPI()
 
@@ -45,6 +45,7 @@ userZipcode = 0
 buildingArea = 0
 resultDF = pd.DataFrame()
 TaxresultDF = pd.DataFrame()
+DiscountresultDF = pd.DataFrame()
 
 
 @app.post('/getUserData')
@@ -126,97 +127,17 @@ async def CalculateTaxIncentives():
     }
     return result_dict
 
+@app.get('/discounts')
+async def getDiscount(userIncID: str):
+    global discountTable
+    discountData = Nexus_DB_Path_Discount_db.copy()
+    # For SGIP -> Jurisdiction - State, and State -> CA
+    discountTable = discountData[((discountData["Jurisdiction"] == "State") & (discountData["State"] == userState))]
+    utilityData  = discountData[(discountData["Incentive_ID"] == userIncID)]
+    discountUTPResult = discountFunctions.getDiscountResult(utilityData, buildingArea)
+    return json.loads(discountUTPResult.to_json(orient="records"))
+
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8080)
-
-
-@app.post('/get_user_info')
-async def getUserInfo(userInputData: dict):
-    global userCity
-    global userCounty
-    global userState
-    global userCountry
-    global userZipcode
-    global buildingArea
-    global userUtility
-    global resultDF
-    userUtility = userInputData['utility']
-    userCity = userInputData['city']
-    userState = userInputData['state']
-    userCounty = userInputData['county']
-    userCountry = userInputData['country']
-    userZipcode = int(userInputData['zipcode'])
-    buildingArea = float(userInputData["building_area"])
-    # # Checking for which State does the user belong to and then initializing that state's zipcode csv
-    # # Need to know if I can get the state from only the zipcode from the frontend - Rishabh
-    # if 89999 < userZipcode < 96162:
-    #     userState = "CA"
-    # else:
-    #     userState = "NY"
-    # dfZipcode = identification_class.locationConfig(userState, userCountry)
-    
-    # # # Location configuration using user zipcode
-    # # userCity = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["City"].iloc[0]
-    # # userCounty = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["County"].iloc[0]
-    # # userState = dfZipcode[dfZipcode["Zipcode"] == userZipcode]["State"].iloc[0]
-
-    # Filtered incentives based on locality
-    rebateData = databaseV2.copy()
-    fiteredRebateData = rebateData[(rebateData["State"] == userCountry) | \
-                                ((rebateData["State"] == userState) & (rebateData["County"] == userState)) | \
-                                (rebateData["County"] == userCounty)]
-    # fiteredRebateData['Estimated Incentive Value'] = fiteredRebateData['Estimated Incentive Value'].astype(float)
-    # rebates_data = fiteredRebateData[fiteredRebateData['Incentive Type'] == 'Discount']
-    # tax_amount_data = fiteredRebateData[fiteredRebateData['Incentive Value'] != 'Discount']
-    resultDF = fiteredRebateData.copy()
-    print(resultDF)
-    resultDF = assumptions.Caliberate_Assumptions(resultDF, buildingArea)
-    # resultDF.to_csv("RESDF.csv", index = False)
-    return json.loads(resultDF.to_json(orient="records"))
-
-@app.get('/statstodisplay')
-async def statstodisplay():
-    global resultDF
-    dfStats = resultDF.copy()
-    # Federal Stats
-    federalStat = len(dfStats[dfStats["Jurisdiction"] == "Federal"])
-    stateStat = len(dfStats[dfStats["Jurisdiction"] == "State"])
-    utilityStat = len(dfStats[dfStats["Jurisdiction"] == "Utility"])
-    return {"federalStat" : federalStat,
-            "stateStat" : stateStat,
-            "utilityStat" : utilityStat}
-
-@app.get('/high_level_view')
-async def highLevelView():
-    global resultDF
-    dfHighLevel = resultDF.copy()
-    print(dfHighLevel.head())
-    dfHighLevel = dfHighLevel.groupby(['Technology' , 'Sub-Technology'])['Amt_Estimation'].agg(['median']).reset_index()
-    result_dict = {}
-    for (category, group_type), group in dfHighLevel.groupby(['Technology' , 'Sub-Technology']):
-        group_json = group.to_json(orient='records')
-        result_dict.setdefault(category, {}).setdefault(group_type, json.loads(group_json))
-    result_json = json.dumps(result_dict, indent=2)
-    print(result_json)
-    return {"data" : json.loads(result_json)}
-
-@app.get('/low_level_view')
-async def lowLevelView():
-    global resultDF
-    dfLowLevel = resultDF.copy()
-    dfLowLevel = dfLowLevel.groupby(['Technology' ,'Incentive Name','Provider','Website Link'])[['Amt_Estimation']].agg(['median']).reset_index()
-    result_dict = {}
-    for (category, group_type, size, location), group in dfLowLevel.groupby(['Technology' ,'Incentive Name','Provider','Website Link']):
-        group_json = group.to_json(orient='records')
-        result_dict \
-            .setdefault(category, {}) \
-            .setdefault(group_type, {}) \
-            .setdefault(size, {}) \
-            .setdefault(location, json.loads(group_json))
-    result_json = json.dumps(result_dict, indent=2)
-    return {"data" : json.loads(result_json)}
-
-
-    

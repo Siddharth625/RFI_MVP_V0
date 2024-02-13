@@ -11,6 +11,12 @@ databaseV2 = pd.read_csv(DB_Path)
 Nexus_DB_Path_Tax = os.path.join(cwd, "backend",  "database","Nexus_DB", "Tax_Incentive_DB.csv")
 Nexus_DB_Path_Tax_db = pd.read_csv(Nexus_DB_Path_Tax)
 
+Nexus_DB_Path_Discount = os.path.join(cwd, "backend",  "database","Nexus_DB", "Discount_Incentives.csv")
+Nexus_DB_Path_Discount_db = pd.read_csv(Nexus_DB_Path_Discount)
+
+RETRO_MOTOR_FAN_HP = 999
+RETRO_HVAC_PACKAGED_W = 999
+
 Section179D_params = {
     'Base_Deduction_High' : 1.00,
     'Base_Deduction_Low' : 0.50,

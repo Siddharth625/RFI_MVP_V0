@@ -1,0 +1,789 @@
+﻿Incentive_ID,Incentive Name,Website Link,State,County,Jurisdiction,Provider,Incentive Type,Building Type,Building Category,Technology,Sub-Technology,Product,Product Capacity,Product Eligibility,Incentive Amount,Unit,Incentive Value,Max Amount,Application/Eligibility Link,Assumption Type,Assumed Capacity,Rank,Important Notes
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"secondary schools, community colleges, universities, hospitals, hotels, nursing homes, large offices, multistory large retail and grocery",HVAC,MOTOR-FAN,Variable Frequency Drive for HVAC Fan,3 hp - 100 hp,"The variable frequency drive (VFD) must be applied to existing HVAC supply,
+return or exhaust air fan motors.
+• VFD must be applied to HVAC applications in which there is a call for varying air
+flow demand. Motor speed shall be controlled to automatically adapt to varying
+air flow demand.
+• VFDs must be applied to single-speed motors.
+• Throttling devices, such as inlet vanes or bypass dampers, must be removed or
+permanently disabled.
+• Installation must follow manufacturer’s guidelines and instructions.
+• Rebate only applies to the following building types: secondary schools, community
+colleges, universities, hospitals, hotels, nursing homes, large offices, multistory
+large retail and grocery. For building types that do not apply, rebates for Advanced
+Rooftop HVAC Controls may be applicable.
+• Rebates are not eligible for constant fan speed applications.
+• HVAC fan motors less than 3 horsepower (hp) or greater than 100 hp are not eligible
+for this rebate. (For HVAC fan motors less than 3 hp, rebates for Advanced Rooftop
+HVAC Controls may be applicable.)
+• Applications where variable speed fans are required by code are not eligible for
+this rebate.
+• Applications on cooling tower fans are not eligible for this rebate",$80/hp,hp,80,0,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_MOTOR_HP,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + ADEC only,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$10/ton 
+(max $150)",ton,10,150,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + CO2 sensor to existing ADEC,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$40/ton 
+(max $300)",ton,40,300,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + ADEC + CO2 sensor,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.",$50/ton (max $500),ton,50,500,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + VFD to existing ADEC,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$80/ton (max $1,200)",ton,80,1200,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + ADEC + VFD,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$130/ton (max $1,950)",ton,130,1950,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + ADEC + CO2 sensor + VFD,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$155/ton (max $3,875)",ton,155,3875,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + VFD + NEMA,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$120/ton 
+(max $1,800)",ton,120,1800,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + VFD + PMM,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$130/ton (max $1,950)",ton,130,1950,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + ADEC + VFD + NEMA,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$180/ton 
+(max $2,700)",ton,180,2700,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + VADEC + VFD + PMM,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$180/ton 
+(max $2,700)",ton,180,2700,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit ADEC + CO2 sensor + VFD + NEMA,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$190/ton 
+(max $4,750)",ton,190,4750,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,"assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery.",HVAC,PACKAGED-HVAC,Packaged HVAC Unit + ADEC + CO2 sensor + VFD + PMM,,"Advanced Digital Economizer Control Systems for 
+Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Customer must replace existing analog or nonfunctional economizer control system 
+with an ADEC system. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer cannot combine this rebate with demand controlled ventilation (DCV) or 
+enhanced ventilation control (EVC) rebate offers for the same HVAC unit. 
+• Rebate applicable for heat pumps, air conditioners, gas packs and variable air volume 
+(VAV) systems. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Demand Controlled Ventilation for Packaged HVAC Units 
+Requirements: 
+• Customer must pick correct measure code for the type of packaged HVAC unit and 
+enter the HVAC unit’s tons of air-conditioning (AC) capacity on the rebate application 
+as “Quantity.” See the HVAC unit’s nameplate for cooling capacity. (1 ton AC capacity = 
+12,000 Btuh) 
+• Rebate is based on the HVAC unit’s cooling capacity and is maxed at $500 per ADEC, 
+plus CO2 sensor system, or $300 for CO2 sensor. 
+• Installation must follow manufacturer’s requirements. Customer must also ensure 
+that controls are installed and operate according to current applicable building and 
+energy codes. 
+• Customer must install DCV on existing operational packaged HVAC unit. 
+• Installer and manufacturer must warrant equipment for at least two years for parts 
+and labor. All installed equipment must be new. 
+• Rebate cannot be combined with ADEC or enhanced ventilation control (EVC) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, relocatable classrooms, universities), small office, restaurant 
+(fast-food, sit-down), retail, manufacturing (biotech). 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+
+Enhanced Ventilation Control for Packaged HVAC Units 
+Requirements: 
+• Customer must install EVC on existing operational packaged HVAC unit. 
+• Rebate cannot be combined with ADEC or demand control ventilation (DCV) rebate 
+offers for the same HVAC unit. 
+• Rebate only applies to the following building types: assembly, education (primary/ 
+secondary school, universities), small office, restaurant (fast-food, sit-down), retail, 
+manufacturing (biotech) and grocery. 
+• Installation address must have a commercial electric account with PG&E. 
+• Rebate must be submitted within 60 days of purchase, install or account establishment, 
+whichever is latest. 
+Exclusions: 
+Variable air volume (VAV) packaged HVAC units are excluded.","$194/ton (max $4,850)",ton,194,4850,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,HVAC_PACKAGED_TON,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,-,INSULATION,PIPE,Water Heater Insulation Pipe - Indoor,,"Pipe Insulation
+Requirements:
+• Minimum-qualifying pipe diameter is 0.5 inch.
+• Pipe must transfer fluid directly from gas-fired equipment, and insulation
+materials/accessories must be installed according to manufacturer’s instructions.
+• Application must include the manufacturer’s name, insulation material type
+and material K-value rating.
+• Acceptable types of insulation for hot water pipes include: elastomeric
+foam rubber, polyethylene foam, UV-resistant polyethylene foam and rigid
+polyurethane foam.
+• Acceptable types of insulation for steam pipes include silicone foam rubber,
+melamine foam, rigid urethane-based foam, cellular glass, rigid fiberglass
+and rigid mineral wool.
+
+Exclusions:
+• These measures are applicable to any small, large commercial and industrial pipe
+insulation retrofit (i.e., non-new construction) application. They cannot be used for
+residential purposes.
+• Replacement of damaged or existing insulation is not eligible for a rebate.
+• California Building Standards Code (Title 24), Section 123, establishes requirements
+for pipe insulation in the design and installation of space-conditioning and service water
+heating systems and equipment. Any pipe requiring insulation according to these
+standards does not qualify for a rebate. Details are available at energy.ca.gov/title24.
+• Pipe insulation for exposed steam and hot-water pipes within 7 feet of the floor that
+are not otherwise guarded in order to prevent contact does not qualify for rebate.
+Occupational Safety and Health Administration (OSHA) standards require that exposed,
+heated surfaces be covered to prevent injury.",$3/linear ft,ft,3,0,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,INSULATION_PIPE_FT,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,-,INSULATION,PIPE,Water Heater Fitting Insulation Pipe,,"Pipe Insulation
+Requirements:
+• Minimum-qualifying pipe diameter is 0.5 inch.
+• Pipe must transfer fluid directly from gas-fired equipment, and insulation
+materials/accessories must be installed according to manufacturer’s instructions.
+• Application must include the manufacturer’s name, insulation material type
+and material K-value rating.
+• Acceptable types of insulation for hot water pipes include: elastomeric
+foam rubber, polyethylene foam, UV-resistant polyethylene foam and rigid
+polyurethane foam.
+• Acceptable types of insulation for steam pipes include silicone foam rubber,
+melamine foam, rigid urethane-based foam, cellular glass, rigid fiberglass
+and rigid mineral wool.
+
+Exclusions:
+• These measures are applicable to any small, large commercial and industrial pipe
+insulation retrofit (i.e., non-new construction) application. They cannot be used for
+residential purposes.
+• Replacement of damaged or existing insulation is not eligible for a rebate.
+• California Building Standards Code (Title 24), Section 123, establishes requirements
+for pipe insulation in the design and installation of space-conditioning and service water
+heating systems and equipment. Any pipe requiring insulation according to these
+standards does not qualify for a rebate. Details are available at energy.ca.gov/title24.
+• Pipe insulation for exposed steam and hot-water pipes within 7 feet of the floor that
+are not otherwise guarded in order to prevent contact does not qualify for rebate.
+Occupational Safety and Health Administration (OSHA) standards require that exposed,
+heated surfaces be covered to prevent injury.",$3/fitting,ft,3,0,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,INSULATION_PIPE_FTNG,0,,
+USA_UTP_CA_0001,PG&E Business Rebate Program,https://www.pge.com/en/save-energy-and-money/rebates-and-incentives/business-energy-efficiency-rebates.html,CA,CA,Utility,PG&E,Discount,Commercial,-,CONTROL,GENERATOR,Generator Rebate Program,,"Generator Rebate Program
+Requirements:
+Backup power generator must be listed on PG&E’s Qualifying Product List (QPL).
+Link: https://www.pge.com/en/outages-and-safety/outage-preparedness-and-support/general-outage-resources/generator-and-battery-rebate-program.html
+PG&E customers must be located in a Tier 2 or 3 high fire-threat areas as determined
+by the California Public Utilities Commission on the High Fire-Threat District map at
+https://ia.cpuc.ca.gov/firemap.
+OR
+Is served by an Enhanced Powerline Safety Setting (EPSS) circuit (if settings are enabled, a blue bar pops up at the top of the screen): https://pgealerts.alerts.pge.com/outagecenter
+AND
+My Site has experienced 2 or more Public Safety Power Shutoffs (PSPS) as verified by this site: https://pgealerts.alerts.pge.com/addresslookup
+Rebate amounts cannot exceed the purchase price of the product, nor can it include taxes or shipping costs. ",$300,,300,0,https://www.pge.com/assets/pge/docs/save-energy-and-money/rebate-and-incentives/business-rebate-catalog.pdf,STANDARD,0,,
