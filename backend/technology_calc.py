@@ -22,8 +22,8 @@ class Technology:
         print(utpDF.columns)
         resdffan = utpDF[utpDF["Sub-Technology"] == "MOTOR-FAN"]
         resdffan["Amt_Estimation"] = np.where(resdffan["Assumption Type"] == "HVAC_MOTOR_HP",
-                                  resdffan["Incentive Value"] * RETRO_MOTOR_FAN_HP * buildingArea,
-                                  0)
+                                  resdffan["Incentive Value"] * RETRO_MOTOR_FAN_HP ,
+                                  resdffan["Max Amount"])
         df_add = resdffan[resdffan["Sub-Technology"] == "MOTOR-FAN"]
         df_master = pd.concat([df_master ,df_add], ignore_index=True)
         return df_master
@@ -37,8 +37,8 @@ class Technology:
             avg_ton = 3
         resdf = utpDF[utpDF["Sub-Technology"] == "PACKAGED-HVAC"]
         resdf["Amt_Estimation"] = np.where(resdf["Assumption Type"] == "HVAC_PACKAGED_TON",
-                                  resdf["Incentive Value"] *  avg_ton * RETRO_HVAC_PACKAGED_W * buildingArea,
-                                  0)
+                                  resdf["Incentive Value"] *  avg_ton * RETRO_HVAC_PACKAGED_W ,
+                                  resdf["Max Amount"])
         df_add = resdf[resdf["Assumption Type"] == "HVAC_PACKAGED_TON"]
         df_master = pd.concat([df_master ,df_add], ignore_index=True)
         return df_master
