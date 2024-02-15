@@ -22,22 +22,17 @@ class Technology:
         print(utpDF.columns)
         resdffan = utpDF[utpDF["Sub-Technology"] == "MOTOR-FAN"]
         resdffan["Amt_Estimation"] = np.where(resdffan["Assumption Type"] == "HVAC_MOTOR_HP",
-                                  resdffan["Incentive Value"] * RETRO_MOTOR_FAN_HP ,
+                                  resdffan["Incentive Value"] * RETRO_MOTOR_FAN_HP , # Need a building scaling factor
                                   resdffan["Max Amount"])
         df_add = resdffan[resdffan["Sub-Technology"] == "MOTOR-FAN"]
         df_master = pd.concat([df_master ,df_add], ignore_index=True)
         return df_master
 
     def HVAC_PACKAGED(self, df_master, utpDF, buildingArea):
-        if buildingArea <= 50000:
-            avg_ton = 1
-        elif buildingArea > 50000 and buildingArea <= 100000:
-            avg_ton = 2
-        elif buildingArea > 100000 and buildingArea <= 150000:
-            avg_ton = 3
+        avg_ton = 5
         resdf = utpDF[utpDF["Sub-Technology"] == "PACKAGED-HVAC"]
         resdf["Amt_Estimation"] = np.where(resdf["Assumption Type"] == "HVAC_PACKAGED_TON",
-                                  resdf["Incentive Value"] *  avg_ton * RETRO_HVAC_PACKAGED_W ,
+                                  resdf["Incentive Value"] *  avg_ton * RETRO_HVAC_PACKAGED_W , # Need a building scaling factor
                                   resdf["Max Amount"])
         df_add = resdf[resdf["Assumption Type"] == "HVAC_PACKAGED_TON"]
         df_master = pd.concat([df_master ,df_add], ignore_index=True)
