@@ -31,8 +31,8 @@ Section179D_params = {
 }
 
 ITC_PTC_Params = {
-    "project_rate" : 8,
-    "project_kWh" : 100,
+    "project_rate" : 0,
+    "project_kWh" : 0,
     "domestic_content" : True,
     "energy_community" : True
 }

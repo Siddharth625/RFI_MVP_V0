@@ -187,6 +187,7 @@ async def getDiscount(userIncID: str):
                                            discount_agg["Control"] + \
                                            discount_agg["Lighting"]+ \
                                            discount_agg["Insulation"]
+    amountAggregation["Total Amount"] = amountAggregation["Tax_Total"] + amountAggregation["Discount_Total"]
     print(amountAggregation)
     return {
         "DiscountUTPtable" : json.loads(discountUTPResult.to_json(orient="records"))
@@ -200,4 +201,4 @@ async def getTotalSavings():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="127.0.0.1", port=8080)

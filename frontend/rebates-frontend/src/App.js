@@ -36,7 +36,7 @@ function App() {
   };
 
   const postUtilityData = async () => {
-    const response = await axios.post("http://localhost:8000/get_user_info", {
+    const response = await axios.post("http://localhost:8080/get_user_info", {
       utility: inputValue?.utility,
       city: "NY",
       state: "NY",
@@ -82,10 +82,10 @@ function App() {
       });
 
       const highLevelView = await axios.get(
-        "http://localhost:8000/high_level_view"
+        "http://localhost:8080/high_level_view"
       );
       const lowlevelview = await axios.get(
-        "http://localhost:8000/low_level_view"
+        "http://localhost:8080/low_level_view"
       );
 
       let programStructure = {};
